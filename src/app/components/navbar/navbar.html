@@ -1,0 +1,62 @@
+<div class="d-flex align-items-center justify-content-between border-bottom border-secondary p-2">
+    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+        <ul class="nav">
+            <li>
+                <img src="assets/images/logo.png" alt="Bootstrap" width="240" height="100">
+            </li>
+        </ul>
+    </a>
+    <div class="d-flex">
+        <div class="d-flex flex-row mx-4" >
+            <ng-autocomplete [data]="endowments" [searchKeyword]="'name'" 
+                [itemTemplate]="itemTemplate" placeholder="Buscar dotacion ...." (selected)="getItem($event)">
+            </ng-autocomplete>
+            <ng-template class="overflow-visible z-3" #itemTemplate let-item>
+                <div class="d-flex align-items-center p-2">
+                    <img [src]="'https://localhost:7094/Resources/' + item.images[0].name" alt="{{ item.name }}"
+                        width="40" height="40" class="me-2">
+                    <p [innerHTML]="item.name"></p>
+                </div>
+            </ng-template>
+            <button class="btn btn-warning" (click)="searchEndowment()"><i class="bi bi-search"></i></button>
+        </div>
+        <button class="btn btn-warning position-relative" (click)="toggleCart()">
+            <i class="bi bi-cart"></i>
+            @if (cartService.getItems().length > 0) {
+            <span class="badge bg-danger position-absolute top-0 right-0 translate-middle rounded-circle">
+                {{ cartService.getItems().length }}
+            </span>
+            }
+        </button>
+        @if (isCartOpen) {
+        <div class="cart-popup bg-white shadow rounded p-3">
+            <div class="d-flex flex-row justify-content-between" (click)="toggleCart()">
+                <h5 class="mb-2">Carrito</h5>
+                <i class="bi bi-x-lg"></i>
+            </div>
+
+
+            @if (cartService.getItems().length === 0) {
+            <p class="text-muted">
+                No hay productos en el carrito
+            </p>
+            } @else {
+            @for (item of cartService.getItems(); track $index) {
+            <div class="d-flex flex-row justify-content-between border-bottom py-2">
+                <div class="d-flex flex-column">
+                    <strong>{{ item.name }}</strong>
+                    <div>Cantidad: {{ item.quantity }}</div>
+                </div>
+                <div class="d-flex">
+                    <button class="btn btn-outline-danger"><i class="bi bi-trash"
+                            (click)="removeItem($index) "></i></button>
+                </div>
+            </div>
+            }
+            <button class="btn btn-warning text-white w-100 mt-3" [disabled]="cartService.getItems().length === 0"
+                (click)="sendQuotation()"><i class="bi bi-send mx-2"></i>Enviar cotizacion</button>
+            }
+        </div>
+        }
+    </div>
+</div>
