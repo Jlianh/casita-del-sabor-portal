@@ -1,0 +1,36 @@
+.hero {
+    min-height: 450px;
+    background-image: url('/assets/images/Especias-India-portada.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.separator {
+    height: 4px;
+    background-image: linear-gradient(to right, red, yellow);
+}
+
+.section-img {
+    border: 5px solid #fff;
+    filter: brightness(0) invert(1);
+    border-radius: 15%;
+    padding: 20px;
+    height: 150px;
+    width: auto;
+}
+
+
+@media (max-width: 768px) {
+    .about-us-img {
+        transform: none;
+    }
+}
+
+.logo-img {
+    height: 40px;
+}
+
+.shopping-cart {
+    height: 24px;
+}

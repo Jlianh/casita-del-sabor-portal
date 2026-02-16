@@ -1,0 +1,24 @@
+<div class="container-fluid mh-100 mw-100 p-3">
+  <div class="d-flex flex-row p-3">
+    <div class="d-flex flex-wrap gap-3 p-3 w-100">
+      @for (product of products; track $index) {
+      <div class="d-flex align-content-start flex-wrap m-3 border border-0 pe-auto" 
+        (click)="endowmentDetails(products[$index].id)">
+        <div class="d-flex flex-column m-3" style="width: 18rem;">
+          <div class="card-img-box">
+            <img [src]="'assets/images/' + products[$index].imagen">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold">{{ products[$index].nombre }}
+            </h5>
+            <p class="card-text flex-grow-1">
+              {{ products[$index].descripcion }}
+            </p>
+            <a class="btn btn-warning text-white mt-auto"><i class="bi bi-cart-plus"></i> Agregar al carro</a>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

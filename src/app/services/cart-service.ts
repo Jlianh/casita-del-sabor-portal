@@ -11,7 +11,13 @@ export class CartService {
   private items: any[] = [];
 
   addItem(item: ProductsCart): void {
-    this.items.push(item);
+    const checkedItems = this.items.filter(i => i.id === item.id);
+
+    if (checkedItems.length > 0) {
+      checkedItems[0].quantity += item.quantity;
+    } else {
+      this.items.push(item);
+    }
   }
 
   getItems(): ProductsCart[] {

@@ -1,2 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Monsterrat';
+    src: url('assets/fonts/Monsterrat/static/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
+body {
+    --bs-body-font-family: 'Monsterrat', sans-serif;
+}

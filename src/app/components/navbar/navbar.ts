@@ -1,9 +1,10 @@
-import { Component, ViewChild, viewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { CartService } from '../../services/cart-service';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { ProductsService } from '../../services/products-service';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 import { FormsModule } from "@angular/forms";
 
 @Component({
@@ -18,16 +19,34 @@ export class Navbar {
 
   isCartOpen = false;
 
+  disabledCart = false;
+
+  currentRoute: string = '';
+
+  private routerSub?: Subscription;
+
   selectedEndowment: any;
 
-  endowments: any[] = [];
+  products: any[] = [];
 
   ngOnInit(): void {
-    this.productService.GetEndowments().subscribe(data => {
-      this.endowments.push(...data);
+    this.products.push(...this.productService.GetProducts());
+
+    this.routerSub = this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event) => {
+      this.currentRoute = (event as NavigationEnd).urlAfterRedirects;
+      this.disabledCart = this.currentRoute.includes('quotation');
+      if (this.disabledCart) {
+        this.isCartOpen = false;
+      }
     });
 
-    console.log(this.endowments);
+    console.log(this.currentRoute);
+  }
+
+  redirectToHome(): void {
+    this.router.navigateByUrl('/');
   }
 
   toggleCart(): void {
@@ -47,15 +66,12 @@ export class Navbar {
   searchEndowment(): void {
     console.log(this.selectedEndowment);
     if (this.selectedEndowment?.id) {
-      // this.router.navigate(['/details', this.selectedEndowment.id]);
       this.router.navigateByUrl('/details/' + this.selectedEndowment.id);
       this.selectedEndowment = null;
     }
   }
 
   sendQuotation(): void {
-    console.log('Hi');
-    const items = this.cartService.getItems();
-    console.log('Sending quotation for items:', items);
+    this.router.navigateByUrl('/quotation');
   }
 }

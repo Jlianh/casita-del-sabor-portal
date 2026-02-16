@@ -1,44 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import products from '../../assets/products/products.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private apiUrl = 'https://localhost:7094/';
+  private products = products;
 
   constructor(private http: HttpClient) { }
 
-  GetEndowments(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'api/Endowment');
+  GetProducts(): any[] {
+    return this.products;
   }
 
-  GetEndowmentById(id: number): Observable<any> {
-    return this.http.get<any>(this.apiUrl + 'api/Endowment/GetById/' + id);
+  GetProductsById(id: number): any {
+    return this.products.find(p => p.id === id);
   }
 
-  GetEndowmentTypes(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'api/EndowmentType');
+  GetProductsByCategories(): any[] {
+    const categories = this.products.map(p => p.categoria);
+    return [...new Set(categories)];
   }
 
-  getCategories(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'api/Category');
+  getProductsCategories(): any[] {
+    return products.map(p => p.categoria);
   }
 
-  GetEndowmentsByFilter(categoryId: number | null, endowmentTypeId: number | null){
-    if (categoryId === 0) {
-      categoryId = null;
-    }
-    if (endowmentTypeId === 0) {
-      endowmentTypeId = null;
-    }
-    const body = {
-      categoryId: categoryId,
-      endowmentTypeId: endowmentTypeId
-    };
-    return this.http.post<any[]>(this.apiUrl + 'api/Endowment/GetByFilters', body);
+  GetProductsByFilter(category: string){
+    return this.products.filter(p => p.categoria === category);
   }
   
 

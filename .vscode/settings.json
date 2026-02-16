@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/531d2019-4cc7-48c2-bba6-db36f865c2a2/resourceGroups/CatalogWebApi2/providers/Microsoft.Web/sites/seguridad-industrial-y-suministros-sas",
+    "appService.deploySubpath": "dist\\endowment-catalog-portal"
+}
