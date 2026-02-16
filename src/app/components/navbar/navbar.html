@@ -9,7 +9,7 @@
     <div class="d-flex justify-content-between flex-column flex-lg-row gap-2 w-100 w-lg-auto">
         <div class="d-flex flex-row mx-lg-4" >
             <ng-autocomplete [data]="products" [searchKeyword]="'name'" 
-                [itemTemplate]="itemTemplate" placeholder="Buscar dotacion ...." (selected)="getItem($event)" (keydown.enter)="searchEndowment()">
+                [itemTemplate]="itemTemplate" placeholder="Buscar " (selected)="getItem($event)" (keydown.enter)="searchEndowment()">
             </ng-autocomplete>
             <ng-template class="overflow-visible z-3" #itemTemplate let-item>
                 <div class="d-flex align-items-center p-2">
