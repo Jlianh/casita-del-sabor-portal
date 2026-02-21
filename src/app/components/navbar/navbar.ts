@@ -54,6 +54,7 @@ export class Navbar {
   }
 
   removeItem(index: number): void {
+    console.log('Current cart items before removal:', this.cartService.getItems());
     console.log('Removing item at index:', index);
     this.cartService.getItems().splice(index, 1);
   }

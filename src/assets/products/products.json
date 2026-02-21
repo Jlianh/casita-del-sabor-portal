@@ -27,7 +27,7 @@
   { "id": 24, "nombre": "Jengibre Pequeño", "imagen": "jengibre-pequeño.jpg", "descripcion": "Jengibre molido.", "precio": 3000, "categoria": "Especias" },
   { "id": 25, "nombre": "Orégano Puro", "imagen": "oregano-puro.jpg", "descripcion": "Orégano seco 100% natural.", "precio": 2000, "categoria": "Especias" },
   { "id": 26, "nombre": "Laurel Puro", "imagen": "laurel-puro.jpg", "descripcion": "Hojas de laurel secas.", "precio": 2000, "categoria": "Especias" },
-  { "id": 27, "nombre": "Morogomas", "imagen": "morogomas.jpg", "descripcion": "Gomas dulces surtidas.", "precio": 4000, "categoria": "Dulces" },
+  { "id": 27, "nombre": "Morogomas", "imagen": "morigomas.jpg", "descripcion": "Gomas dulces surtidas.", "precio": 4000, "categoria": "Dulces" },
   { "id": 28, "nombre": "Almendra Dulce", "imagen": "almendra-dulce.jpg", "descripcion": "Almendra con cobertura dulce.", "precio": 8500, "categoria": "Dulces" },
   { "id": 29, "nombre": "Color Rojo Pequeño", "imagen": "color-rojo-pequeño.jpg", "descripcion": "Colorante rojo en presentación pequeña.", "precio": 2500, "categoria": "Condimentos" },
   { "id": 30, "nombre": "Cúrcuma Pura Pequeña", "imagen": "curcuma-pura-pequeña.jpg", "descripcion": "Cúrcuma molida natural.", "precio": 2500, "categoria": "Especias" },
@@ -40,7 +40,7 @@
   { "id": 36, "nombre": "Comino Pepa", "imagen": "comino-pepa.jpg", "descripcion": "Comino entero.", "precio": 3000, "categoria": "Semillas" },
   { "id": 37, "nombre": "Linaza Molida", "imagen": "linaza-molida.jpg", "descripcion": "Linaza finamente molida.", "precio": 3000, "categoria": "Semillas" },
   { "id": 38, "nombre": "Adobo Completo", "imagen": "adobo-completo.jpg", "descripcion": "Mezcla completa de especias.", "precio": 4000, "categoria": "Condimentos" },
-  { "id": 39, "nombre": "Color Amarillo Pequeño", "imagen": "color-amarillo-pequeño.jpg", "descripcion": "Colorante amarillo pequeño.", "precio": 2500, "categoria": "Condimentos" },
+  { "id": 39, "nombre": "Color Amarillo Pequeño", "imagen": "color-amarilo-pequeño.jpg", "descripcion": "Colorante amarillo pequeño.", "precio": 2500, "categoria": "Condimentos" },
   { "id": 40, "nombre": "Color Rojo Mediano", "imagen": "color-rojo-mediano.jpg", "descripcion": "Colorante rojo mediano.", "precio": 3000, "categoria": "Condimentos" },
 
   { "id": 41, "nombre": "Bicarbonato Pequeño", "imagen": "bicarbonato-pequeño.jpg", "descripcion": "Bicarbonato de sodio pequeño.", "precio": 2000, "categoria": "Condimentos" },
