@@ -8,3 +8,26 @@
 body {
     --bs-body-font-family: 'Monsterrat', sans-serif;
 }
+
+/* Make app fill full viewport and allow footer to stick to bottom */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #e6e6e6;
+}
+
+/* Use dynamic viewport height when available to avoid mobile address-bar gaps */
+.app-root-container {
+    min-height: 100dvh; /* modern browsers */
+    min-height: 100vh;  /* fallback */
+    display: flex;
+    flex-direction: column;
+    background-color: #e6e6e6;
+}
+
+.main-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
