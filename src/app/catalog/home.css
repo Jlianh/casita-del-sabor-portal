@@ -1,5 +1,6 @@
 .hero {
-    min-height: 450px;
+    min-height: 50vh;
+    max-height: 80vh;
     background-image: url('/assets/images/Especias-India-portada.jpg');
     background-size: cover;
     background-position: center;
@@ -16,8 +17,22 @@
     filter: brightness(0) invert(1);
     border-radius: 15%;
     padding: 20px;
-    height: 150px;
-    width: auto;
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    display: block;
+}
+
+/* Ensure images inside containers scale and keep aspect */
+.about-us-img,
+.section-img {
+    object-fit: cover;
+}
+
+.about-us-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 
@@ -27,10 +42,36 @@
     }
 }
 
+@media (max-width: 576px) {
+    .hero {
+        min-height: 40vh;
+        padding: 2rem 1rem;
+        background-position: top center;
+    }
+
+    .hero h1.display-4 {
+        font-size: 1.6rem;
+    }
+
+    .hero .lead {
+        font-size: 0.95rem;
+    }
+
+    .section-img {
+        max-width: 120px;
+        padding: 12px;
+    }
+}
+
 .logo-img {
     height: 40px;
 }
 
 .shopping-cart {
     height: 24px;
+}
+
+footer .container p,
+footer .container a {
+    word-break: break-word;
 }

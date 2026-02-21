@@ -1,40 +1,47 @@
-<div class="d-flex align-items-center justify-content-between p-2">
-    <div class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none" (click)="redirectToHome()">
+<div class="d-flex align-items-center justify-content-between p-2 gap-2">
+    <div class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
+        (click)="redirectToHome()">
         <ul class="nav">
             <li>
-                <img src="assets/images/logo.png" alt="Bootstrap" width="140" height="120" class="pe-auto">
+                <img src="assets/images/logo.png" alt="logo" class="pe-auto logo-img">
             </li>
         </ul>
     </div>
-    <div class="d-flex justify-content-between flex-column flex-lg-row gap-2 w-100 w-lg-auto">
-        <div class="d-flex flex-row mx-lg-4" >
-            <ng-autocomplete [data]="products" [searchKeyword]="'nombre'" 
-                [itemTemplate]="itemTemplate" placeholder="Buscar " (selected)="getItem($event)" (keydown.enter)="searchEndowment()">
-            </ng-autocomplete>
-            <ng-template class="overflow-visible z-3" #itemTemplate let-item>
-                <div class="d-flex align-items-center p-2">
-                    <img [src]="'assets/images/' + item.imagen" alt="{{ item.name }}"
-                        width="40" height="40" class="me-2">
-                    <p [innerHTML]="item.nombre"></p>
-                </div>
-            </ng-template>
-            <button class="btn btn-warning" (click)="searchEndowment()"><i class="bi bi-search"></i></button>
+
+    <div class="d-flex justify-content-between flex-column flex-lg-row gap-2 w-75 w-lg-auto align-items-center">
+        <div class="d-flex flex-row mx-lg-4 flex-grow-1 align-items-center search-container" style="min-width:0;">
+            <div class="flex-grow-1" style="min-width:0;">
+                <ng-autocomplete class="w-100" [data]="products" [searchKeyword]="'nombre'"
+                    [itemTemplate]="itemTemplate" placeholder="Buscar " (selected)="getItem($event)"
+                    (keydown.enter)="searchEndowment()">
+                </ng-autocomplete>
+                <ng-template class="overflow-visible z-3" #itemTemplate let-item>
+                    <div class="d-flex align-items-center p-2">
+                        <img [src]="'assets/images/' + item.imagen" alt="{{ item.name }}" width="40" height="40"
+                            class="me-2">
+                        <p [innerHTML]="item.nombre"></p>
+                    </div>
+                </ng-template>
+            </div>
+            <button class="btn btn-warning ms-2" (click)="searchEndowment()"><i class="bi bi-search"></i></button>
         </div>
-        <button class="btn btn-warning position-relative" (click)="toggleCart()" [disabled]="disabledCart">
+    </div>
+    <div class="position-relative">
+        <button class="btn btn-warning" (click)="toggleCart()" [disabled]="disabledCart">
             <i class="bi bi-cart"></i>
             @if (cartService.getItems().length > 0) {
-            <span class="badge bg-danger position-absolute top-0 right-0 translate-middle rounded-circle">
+            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-circle">
                 {{ cartService.getItems().length }}
             </span>
             }
         </button>
+
         @if (isCartOpen) {
         <div class="cart-popup bg-white shadow rounded p-3">
             <div class="d-flex flex-row justify-content-between" (click)="toggleCart()">
                 <h5 class="mb-2">Carrito</h5>
                 <i class="bi bi-x-lg"></i>
             </div>
-
 
             @if (cartService.getItems().length === 0) {
             <p class="text-muted">
@@ -51,11 +58,11 @@
                 </div>
                 <div class="d-flex">
                     <div class="me-3">
-                        <img [src]="'/assets/images/' + item.image" alt="{{ item.name }}"
-                            width="50" height="50" class="mt-2">
+                        <img [src]="'/assets/images/' + item.image" alt="{{ item.name }}" width="50" height="50"
+                            class="mt-2">
                     </div>
-                    <button class="btn btn-outline-danger" (click)="removeItem($index)"><i class="bi bi-trash"
-                            ></i></button>
+                    <button class="btn btn-outline-danger" (click)="removeItem($index)"><i
+                            class="bi bi-trash"></i></button>
                 </div>
             </div>
             }

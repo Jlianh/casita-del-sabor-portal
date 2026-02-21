@@ -61,6 +61,10 @@ export class CatalogDetails {
     }
   }
 
+  changeQuantity($event: any): void {
+    this.quantity = parseInt($event.target.value, 10);
+  }
+
   addToCart(): void {
     console.log('Adding to cart:', this.endowmentDetail);
 

@@ -1,0 +1,4 @@
+footer .container p,
+footer .container a {
+    word-break: break-word;
+}

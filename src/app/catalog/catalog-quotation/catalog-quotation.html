@@ -1,14 +1,14 @@
 <div class="d-flex flex-column w-75 align-items-center mx-auto my-4">
     <div class="d-flex flex-column w-100 mb-4">
         <h1>
-            Cotización de Productos
+            Detalles del pedido
         </h1>
         <p>
-            A continuación se muestran los productos que ha añadido a su carrito de cotización:
+            A continuación se muestran los productos que has añadido a tu carrito
         </p>
     </div>
     <div class="row w-100 gx-4 ">
-        <div class="col-md-6 overflow-y-scroll mb-3 border p-2" style="max-height: 400px;">
+        <div class="col-md-6 overflow-y-scroll mb-3 border p-2 bg-light mr-2" style="max-height: 400px; ">
             @for (item of cartService.getItems(); track $index) {
             <div class="d-flex justify-content-between align-items-center border rounded-2 p-2 mb-3 shadow-sm">
                 <div class="d-flex flex-column">
@@ -41,7 +41,7 @@
             </div>
             }
         </div>
-        <div class="p-4 border rounded-2 shadow-sm col-md-6 h-100">
+        <div class="p-4 border rounded-2 shadow-sm col-md-6 h-100 bg-light">
             <h4>Información del Cliente</h4>
             <small class="text-danger">Los campos con <strong>*</strong> son obligatorios</small>
             <form [formGroup]="clientQuotationForm" class="d-flex flex-column mt-4">
@@ -87,7 +87,7 @@
     </div>
     <div class="bottom-0 mt-3 w-100 border-top p-3 z-3 bg-white shadow">
         <div>
-            <p>Total de productos en cotización: <strong>{{ cartService.getItems().length }}</strong></p>
+            <p>Total de productos: <strong>{{ cartService.getItems().length }}</strong></p>
             <p>Total de artículos: <strong>{{ this.getTotalQuantity() }}</strong></p>
         </div>
         <div class="d-flex justify-content-center">

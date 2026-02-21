@@ -19,7 +19,7 @@
       <div class="d-flex align-items-center">
         <div class="input-group" style="max-width: 150px;">
           <button class="btn btn-outline-secondary" (click)="decrementQuantity()">-</button>
-          <input type="text" class="form-control text-center" [value]="quantity" readonly>
+          <input type="number" class="form-control text-center" inputmode="numeric" [value]="quantity" (change)="changeQuantity($event)">
           <button class="btn btn-outline-secondary" (click)="incrementQuantity()">+</button>
         </div>
 

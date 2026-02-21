@@ -7,3 +7,31 @@
   overflow-y: auto;
   z-index: 1000;
 }
+
+/* Responsive navbar tweaks */
+.logo-img {
+  max-height: 56px;
+  height: auto;
+  display: block;
+}
+
+.search-container {
+  min-width: 0; /* allow flex children to shrink */
+}
+
+.autocomplete-full,
+ng-autocomplete.w-100 {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .logo-img {
+    max-height: 44px;
+  }
+
+  .cart-popup {
+    right: 0;
+    left: auto;
+    width: 260px;
+  }
+}
