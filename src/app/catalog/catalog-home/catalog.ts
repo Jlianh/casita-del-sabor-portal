@@ -1,38 +1,51 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ProductsService } from '../../services/products-service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+interface Category {
+  key: string;
+  label: string;
+}
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css'
 })
-
-
-export class Catalog {
-
-  filtersForm = new FormGroup({
-    categoriesId: new FormControl(''),
-    endowmentTypeId: new FormControl('')
-  });
+export class Catalog implements OnInit {
 
   products: any[] = [];
 
-  categories: any[] = []; 
+  activeCategory = 'all';
 
-  constructor(private router: Router, private productService: ProductsService) {}
+  categories: Category[] = [
+    { key: 'all',          label: 'Todos'        },
+    { key: 'Frutos secos', label: 'Frutos Secos' },
+    { key: 'Dulces',       label: 'Dulces'       },
+    { key: 'Especias',     label: 'Especias'     },
+    { key: 'Condimentos',  label: 'Condimentos'  },
+    { key: 'Semillas',     label: 'Semillas'     },
+  ];
+
+  constructor(
+    private router        : Router,
+    private productService: ProductsService
+  ) {}
 
   ngOnInit(): void {
     this.products = this.productService.GetProducts();
-    console.log(this.products);
+  }
+
+  get filtered(): any[] {
+    return this.products.filter(p =>
+      this.activeCategory === 'all' || p.categoria === this.activeCategory
+    );
   }
 
   endowmentDetails(id: number): void {
     this.router.navigate(['/details', id]);
   }
-
 }

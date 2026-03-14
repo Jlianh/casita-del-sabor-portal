@@ -31,3 +31,16 @@ html, body {
     display: flex;
     flex-direction: column;
 }
+
+.background-red {
+    background-color: #DB3438;
+}
+
+.yellow-background{
+    background-color: #FFF313 !important;
+}
+
+.btn-custom-warning, .btn-custom-warning:hover, .btn-custom-warning:focus, .btn-custom-warning:active {
+    background-color: #fcba2d !important;
+    border-color: #fcba2d !important;
+}

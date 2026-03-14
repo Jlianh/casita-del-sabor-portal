@@ -1,89 +1,96 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CartService } from '../../services/cart-service';
 import { ProductsService } from '../../services/products-service';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { SizeService } from '../../services/size-service';
-import { ColorService } from '../../services/color-service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-catalog-details',
-  imports: [RouterModule, CommonModule],
   standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './catalog-details.html',
   styleUrl: './catalog-details.css'
 })
-export class CatalogDetails {
+export class CatalogDetails implements OnInit, OnDestroy {
 
-  endowmentDetail: any;
-
-  sizes : any[] = [];
-
-  colors : any[] = [];
-
+  endowmentDetail: any = null;
   endowmentId: number = 0;
+  quantity: number[] = [];
+  selectedPresentation: boolean[] = [];
 
-  quantity: number = 1;
+  private routeSub?: Subscription;
 
-  constructor(private cartService: CartService,
-     private endowmentService: ProductsService,
-     private route: ActivatedRoute,
-    private sizeService: SizeService,
-  private colorService: ColorService) { }
+  constructor(
+    private cartService     : CartService,
+    private endowmentService: ProductsService,
+    private route           : ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    // Suscribirse a cambios de parámetros y cargar el detalle cada vez que cambie el id
-    this.route.paramMap.subscribe(paramMap => {
+    this.routeSub = this.route.paramMap.subscribe(paramMap => {
       const idParam = paramMap.get('id');
       const id = idParam ? +idParam : null;
 
       if (id !== null) {
-        this.endowmentId = id;
-
-        // Llamada al servicio por cada cambio de id
-        this.endowmentDetail = this.endowmentService.GetProductsById(id);
-        this.quantity = 1; // Reiniciar cantidad al cambiar de producto
+        this.endowmentId      = id;
+        this.endowmentDetail  = this.endowmentService.GetProductsById(id);
+        this.quantity             = [];
+        this.selectedPresentation = [];
       } else {
-        // Si no hay id, limpiar detalle
         this.endowmentDetail = null;
       }
     });
-    console.log(this.endowmentDetail);
   }
 
-  incrementQuantity(): void {
-    this.quantity++;
+  ngOnDestroy(): void {
+    this.routeSub?.unsubscribe();
   }
 
-  decrementQuantity(): void {
-    if (this.quantity > 1) {
-      this.quantity--;
+  selectPresentation(index: number): void {
+    this.selectedPresentation[index] = !this.selectedPresentation[index];
+    if (this.selectedPresentation[index] && !this.quantity[index]) {
+      this.quantity[index] = 1;
     }
   }
 
-  changeQuantity($event: any): void {
-    this.quantity = parseInt($event.target.value, 10);
+  incrementQuantity(index: number): void {
+    this.quantity[index] = (this.quantity[index] || 1) + 1;
+  }
+
+  decrementQuantity(index: number): void {
+    if ((this.quantity[index] || 1) > 1) {
+      this.quantity[index]--;
+    }
+  }
+
+  changeQuantity(event: any, index: number): void {
+    const val = parseInt(event.target.value, 10);
+    this.quantity[index] = isNaN(val) || val < 1 ? 1 : val;
   }
 
   addToCart(): void {
-    console.log('Adding to cart:', this.endowmentDetail);
+    const selectedItems = this.endowmentDetail.gramajes
+      .map((gramaje: string, index: number) => {
+        if (this.selectedPresentation[index]) {
+          return {
+            id      : this.endowmentDetail.id,
+            name    : this.endowmentDetail.nombre,
+            gramaje,
+            quantity: this.quantity[index] || 1,
+            image   : this.endowmentDetail.imagen,
+            index
+          };
+        }
+        return null;
+      })
+      .filter((item: any) => item !== null && item.quantity > 0);
 
-    this.cartService.addItem({
-      id: this.endowmentDetail.id,
-      name: this.endowmentDetail.nombre,
-      quantity: this.quantity,
-      unitaryPrice: this.endowmentDetail.precio,
-      totalPrice: this.endowmentDetail.precio * this.quantity,
-      image: this.endowmentDetail.imagen
-    });
-    console.log({
-      id: this.endowmentDetail.id,
-      name: this.endowmentDetail.name,
-      quantity: this.quantity,
-      unitaryPrice: this.endowmentDetail.price,
-      totalPrice: this.endowmentDetail.price * this.quantity,
-      image: this.endowmentDetail.image
-    });
+    if (selectedItems.length === 0) {
+      alert('Por favor, seleccione al menos una presentación con cantidad mayor a 0.');
+      return;
+    }
+
+    selectedItems.forEach((item: any) => this.cartService.addItem(item));
   }
-
 }

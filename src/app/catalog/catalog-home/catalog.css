@@ -1,13 +1,262 @@
-.card-img-box {
-  height: 50vh;       
+/* ════════════════════════════════════════════════════════
+   PAGE & LAYOUT
+   ════════════════════════════════════════════════════════ */
+.catalog-page {
+  min-height: 100vh;
+  background: #faf7f2;
+  font-family: 'Lato', sans-serif;
+}
+
+.catalog-layout {
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* ════════════════════════════════════════════════════════
+   LEFT SIDEBAR
+   ════════════════════════════════════════════════════════ */
+.filter-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  top: 68px;                       /* sits below navbar */
+  height: calc(100vh - 68px);
+  padding: 2rem 1.25rem;
+  background: #fff;
+  border-right: 1px solid rgba(0,0,0,0.07);
+  box-shadow: 2px 0 12px rgba(0,0,0,0.04);
+}
+
+@media (max-width: 576px) {
+  .filter-sidebar { top: 60px; height: calc(100vh - 60px); }
+}
+
+.filter-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b0a898;
+  margin-bottom: 1rem;
+}
+
+/* ── Category pills ──────────────────────────────────── */
+.cat-pill {
+  width: 100%;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  color: #6b5b45;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.cat-pill:hover {
+  background: rgba(219,52,56,0.07);
+  border-color: rgba(219,52,56,0.25);
+  color: #DB3438;
+}
+
+.cat-pill.active {
+  background: #DB3438;
+  border-color: #DB3438;
+  color: #fff;
+}
+
+/* ── Responsive: sidebar becomes top strip on mobile ─── */
+@media (max-width: 768px) {
+  .catalog-layout {
+    flex-direction: column;
+  }
+
+  .filter-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-heading {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .d-flex.flex-column {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+
+  .cat-pill {
+    width: auto;
+    text-align: center;
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   MAIN CONTENT
+   ════════════════════════════════════════════════════════ */
+.catalog-main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ════════════════════════════════════════════════════════
+   PRODUCT GRID
+   ════════════════════════════════════════════════════════ */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ════════════════════════════════════════════════════════
+   PRODUCT CARD
+   ════════════════════════════════════════════════════════ */
+.product-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  animation: cardFadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.11);
+}
+
+@keyframes cardFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Image ───────────────────────────────────────────── */
+.product-img-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f5f0e8;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-img { transform: scale(1.06); }
+
+.product-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(219,52,56,0.0);
+  display: flex;
   align-items: center;
+  justify-content: center;
+  transition: background 0.25s;
+}
+
+.product-img-overlay i {
+  font-size: 1.8rem;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.product-card:hover .product-img-overlay { background: rgba(219,52,56,0.18); }
+.product-card:hover .product-img-overlay i { opacity: 1; transform: scale(1); }
+
+/* ── Body ────────────────────────────────────────────── */
+.product-body {
+  padding: 1rem 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1008;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+  transition: color 0.18s;
+}
+
+.product-card:hover .product-name { color: #DB3438; }
+
+.product-desc {
+  font-size: 0.83rem;
+  color: #9b8c7a;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.card-img-box img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+.add-to-cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: #fcba2d;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
 }
+
+.add-to-cart-btn:hover {
+  background: #e0a010;
+  transform: translateY(-1px);
+}
+
+/* ════════════════════════════════════════════════════════
+   EMPTY STATE
+   ════════════════════════════════════════════════════════ */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1rem;
+  color: #b0a898;
+  gap: 1rem;
+}
+
+.empty-state i { font-size: 3rem; opacity: 0.5; }
+.empty-state p { font-family: 'Lato', sans-serif; font-size: 1.1rem; margin: 0; }

@@ -6,9 +6,9 @@ export interface Quotation {
     clientPhone: string;
     createdAt: string;
     quotationItems: {
-        endowmentId: number;
-        sizeId?: number;
-        colorId?: number;
+        productId: number;
+        name: string;
+        grammage: string;
         quantity: number;
         imageName?: string;
     }[];

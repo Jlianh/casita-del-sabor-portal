@@ -1,17 +1,262 @@
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+/* ════════════════════════════════════════════════════════
+   PAGE
+   ════════════════════════════════════════════════════════ */
+.detail-page {
+  min-height: 100vh;
+  background: #faf7f2;
+  font-family: 'Lato', sans-serif;
 }
 
-/* Firefox */
-input[type="number"] {
-	-moz-appearance: textfield;
+/* ════════════════════════════════════════════════════════
+   NOT FOUND
+   ════════════════════════════════════════════════════════ */
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 1rem;
+  gap: 1rem;
+  color: #b0a898;
+  text-align: center;
 }
 
-/* Optional: make the numeric input visually consistent */
-.input-group input[type="number"] {
-	-moz-appearance: textfield;
+.not-found i   { font-size: 3.5rem; opacity: 0.5; }
+.not-found h2  { font-family: 'Playfair Display', Georgia, serif; color: #1a1008; }
+
+/* ════════════════════════════════════════════════════════
+   BACK LINK
+   ════════════════════════════════════════════════════════ */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #9b8c7a;
+  text-decoration: none;
+  transition: color 0.18s;
 }
 
+.back-link:hover { color: #DB3438; }
+
+/* ════════════════════════════════════════════════════════
+   PRODUCT IMAGE CARD
+   ════════════════════════════════════════════════════════ */
+.product-img-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.product-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ════════════════════════════════════════════════════════
+   DETAILS PANEL
+   ════════════════════════════════════════════════════════ */
+.product-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: #DB3438;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.title-divider {
+  border-color: rgba(219,52,56,0.2);
+  margin-bottom: 1.75rem;
+}
+
+/* ── Info blocks ─────────────────────────────────────── */
+.info-block {
+  margin-bottom: 1.75rem;
+}
+
+.section-badge {
+  display: inline-block;
+  background: #DB3438;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: 8px;
+}
+
+.info-rows p {
+  font-size: 0.95rem;
+  color: #4a3d30;
+  margin-bottom: 0.5rem;
+  line-height: 1.65;
+}
+
+.info-label {
+  font-weight: 700;
+  color: #DB3438;
+  margin-right: 0.3rem;
+}
+
+/* ── Presentations ───────────────────────────────────── */
+.presentations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.presentation-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Checkbox styling */
+.form-check-input {
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+  border: 2px solid #ced4da;
+  transition: border-color 0.15s;
+}
+
+.form-check-input:checked {
+  background-color: #DB3438;
+  border-color: #DB3438;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 3px rgba(219,52,56,0.2);
+  border-color: #DB3438;
+}
+
+.form-check-label {
+  font-size: 0.95rem;
+  color: #4a3d30;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ── Quantity control — hidden by default, animates in ── */
+.qty-control {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #e0dbd4;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 36px;
+  /* collapsed state */
+  opacity: 0;
+  max-width: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease, max-width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.qty-control.qty-visible {
+  opacity: 1;
+  max-width: 140px;
+  pointer-events: auto;
+}
+
+.qty-btn {
+  width: 34px;
+  height: 100%;
+  border: none;
+  background: #f5f0e8;
+  color: #4a3d30;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.qty-btn:hover {
+  background: #DB3438;
+  color: #fff;
+}
+
+.qty-input {
+  width: 50px;
+  height: 100%;
+  border: none;
+  border-left: 1.5px solid #e0dbd4;
+  border-right: 1.5px solid #e0dbd4;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1008;
+  background: #fff;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+/* Remove number spinners */
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── Add to cart ─────────────────────────────────────── */
+.add-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  border: none;
+  background: #fcba2d;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(252,186,45,0.38);
+  transition: background 0.2s, transform 0.18s, box-shadow 0.18s;
+}
+
+.add-cart-btn:hover {
+  background: #e0a010;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(252,186,45,0.48);
+}
+
+.add-cart-btn i { font-size: 1.1rem; }
+
+/* ════════════════════════════════════════════════════════
+   ENTRANCE ANIMATIONS
+   ════════════════════════════════════════════════════════ */
+.animate-slide-left {
+  animation: slideLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-right {
+  animation: slideRight 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}

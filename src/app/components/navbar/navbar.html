@@ -1,75 +1,120 @@
-<div class="d-flex align-items-center justify-content-between p-2 gap-2">
-    <div class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
-        (click)="redirectToHome()">
-        <ul class="nav">
-            <li>
-                <img src="assets/images/logo.png" alt="logo" class="pe-auto logo-img">
-            </li>
-        </ul>
+<nav class="navbar-shell sticky-top">
+  <div class="navbar-inner container-fluid px-4 d-flex align-items-center justify-content-between gap-3">
+
+    <!-- Logo -->
+    <a class="brand-link d-flex align-items-center gap-2 text-decoration-none flex-shrink-0" (click)="redirectToHome()">
+      <img src="assets/images/logo.png" alt="Casita del Sabor" class="brand-logo" />
+      <span class="brand-name d-none d-sm-block">Casita del Sabor</span>
+    </a>
+
+    <!-- Desktop Search -->
+    <div class="search-wrapper d-none d-md-flex flex-grow-1 mx-4" style="max-width: 520px;">
+      <div class="search-pill w-100 d-flex align-items-center">
+        <div class="flex-grow-1" style="min-width:0;">
+          <ng-autocomplete
+            class="w-100"
+            [data]="products"
+            [searchKeyword]="'nombre'"
+            [itemTemplate]="itemTemplate"
+            placeholder="Buscar productos..."
+            (selected)="getItem($event)"
+            (keydown.enter)="searchEndowment()">
+          </ng-autocomplete>
+          <ng-template #itemTemplate let-item>
+            <div class="d-flex align-items-center p-2">
+              <img [src]="'assets/images/' + item.imagen" alt="{{ item.nombre }}" width="36" height="36" class="me-2 rounded">
+              <p class="mb-0 small" [innerHTML]="item.nombre"></p>
+            </div>
+          </ng-template>
+        </div>
+        <button class="search-btn" (click)="searchEndowment()">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
     </div>
 
-    <div class="d-flex justify-content-between flex-column flex-lg-row gap-2 w-75 w-lg-auto align-items-center">
-        <div class="d-flex flex-row mx-lg-4 flex-grow-1 align-items-center search-container" style="min-width:0;">
-            <div class="flex-grow-1" style="min-width:0;">
-                <ng-autocomplete class="w-100" [data]="products" [searchKeyword]="'nombre'"
-                    [itemTemplate]="itemTemplate" placeholder="Buscar " (selected)="getItem($event)"
-                    (keydown.enter)="searchEndowment()">
-                </ng-autocomplete>
-                <ng-template class="overflow-visible z-3" #itemTemplate let-item>
-                    <div class="d-flex align-items-center p-2">
-                        <img [src]="'assets/images/' + item.imagen" alt="{{ item.name }}" width="40" height="40"
-                            class="me-2">
-                        <p [innerHTML]="item.nombre"></p>
-                    </div>
-                </ng-template>
-            </div>
-            <button class="btn btn-warning ms-2" (click)="searchEndowment()"><i class="bi bi-search"></i></button>
-        </div>
-    </div>
-    <div class="position-relative">
-        <button class="btn btn-warning" (click)="toggleCart()" [disabled]="disabledCart">
-            <i class="bi bi-cart"></i>
-            @if (cartService.getItems().length > 0) {
-            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-circle">
-                {{ cartService.getItems().length }}
-            </span>
-            }
+    <!-- Actions -->
+    <div class="d-flex align-items-center gap-1">
+
+      <!-- Mobile Search Toggle -->
+      <button class="icon-btn d-flex d-md-none" (click)="toggleMobileSearch()" aria-label="Buscar">
+        <i class="bi bi-search"></i>
+      </button>
+
+      <!-- Cart Button -->
+      <div class="position-relative">
+        <button class="icon-btn cart-btn" (click)="toggleCart()" [disabled]="disabledCart" aria-label="Carrito">
+          <i class="bi bi-bag"></i>
+          @if (cartService.getItems().length > 0) {
+            <span class="cart-badge">{{ cartService.getItems().length }}</span>
+          }
         </button>
 
+        <!-- Cart Popup -->
         @if (isCartOpen) {
-        <div class="cart-popup bg-white shadow rounded p-3">
-            <div class="d-flex flex-row justify-content-between" (click)="toggleCart()">
-                <h5 class="mb-2">Carrito</h5>
-                <i class="bi bi-x-lg"></i>
+          <div class="cart-popup shadow-lg">
+            <div class="cart-header d-flex align-items-center justify-content-between mb-3">
+              <h6 class="mb-0 fw-bold">Tu carrito</h6>
+              <button class="icon-btn-sm" (click)="toggleCart()"><i class="bi bi-x-lg"></i></button>
             </div>
 
             @if (cartService.getItems().length === 0) {
-            <p class="text-muted">
-                No hay productos en el carrito
-            </p>
+              <div class="empty-cart text-center py-4">
+                <i class="bi bi-bag fs-2 text-muted"></i>
+                <p class="text-muted mt-2 small">Tu carrito está vacío</p>
+              </div>
             } @else {
-            @for (item of cartService.getItems(); track $index) {
-            <div class="d-flex flex-row justify-content-between border-bottom py-2">
-                <div class="d-flex flex-column">
-                    <strong>{{ item.name }}</strong>
-                    <div>Cantidad: {{ item.quantity }}</div>
-                    <div>Precio unitario: $ {{ item.unitaryPrice }}</div>
-                    <div>Precio total: $ {{ item.totalPrice }}</div>
-                </div>
-                <div class="d-flex">
-                    <div class="me-3">
-                        <img [src]="'/assets/images/' + item.image" alt="{{ item.name }}" width="50" height="50"
-                            class="mt-2">
+              <div class="cart-items">
+                @for (item of cartService.getItems(); track $index) {
+                  <div class="cart-item d-flex align-items-center gap-2 py-2">
+                    <img [src]="'/assets/images/' + item.image" alt="{{ item.name }}" width="48" height="48" class="rounded-2 object-fit-cover flex-shrink-0">
+                    <div class="flex-grow-1 overflow-hidden">
+                      <p class="mb-0 fw-semibold small text-truncate">{{ item.name }}</p>
+                      <p class="mb-0 text-muted" style="font-size:.75rem;">Cant: {{ item.quantity }} · {{ item.gramaje }}</p>
                     </div>
-                    <button class="btn btn-outline-danger" (click)="removeItem($index)"><i
-                            class="bi bi-trash"></i></button>
-                </div>
-            </div>
+                    <button class="icon-btn-sm text-danger" (click)="removeItem($index)">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </div>
+                }
+              </div>
+              <button
+                class="btn-send w-100 mt-3 d-flex align-items-center justify-content-center gap-2"
+                [disabled]="cartService.getItems().length === 0"
+                (click)="sendQuotation()">
+                <i class="bi bi-send"></i> Ir a pedido
+              </button>
             }
-            <button class="btn btn-warning text-white w-100 mt-3" [disabled]="cartService.getItems().length === 0"
-                (click)="sendQuotation()"><i class="bi bi-send mx-2"></i>Ir a pedido</button>
-            }
-        </div>
+          </div>
         }
+      </div>
+
+      <!-- Mobile Menu (optional placeholder) -->
+      <button class="icon-btn d-flex d-md-none" aria-label="Menú">
+        <i class="bi bi-list"></i>
+      </button>
     </div>
-</div>
+  </div>
+
+  <!-- Mobile Search Bar -->
+  @if (isMobileSearchOpen) {
+    <div class="mobile-search px-4 pb-3">
+      <div class="search-pill w-100 d-flex align-items-center">
+        <div class="flex-grow-1" style="min-width:0;">
+          <ng-autocomplete
+            class="w-100"
+            [data]="products"
+            [searchKeyword]="'nombre'"
+            [itemTemplate]="itemTemplate"
+            placeholder="Buscar productos..."
+            (selected)="getItem($event)"
+            (keydown.enter)="searchEndowment()">
+          </ng-autocomplete>
+        </div>
+        <button class="search-btn" (click)="searchEndowment()">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </div>
+  }
+</nav>

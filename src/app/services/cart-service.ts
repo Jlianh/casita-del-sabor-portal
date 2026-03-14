@@ -11,7 +11,7 @@ export class CartService {
   private items: any[] = [];
 
   addItem(item: ProductsCart): void {
-    const checkedItems = this.items.filter(i => i.id === item.id);
+    const checkedItems = this.items.filter(i => i.id === item.id && i.index === item.index);
 
     if (checkedItems.length > 0) {
       checkedItems[0].quantity += item.quantity;

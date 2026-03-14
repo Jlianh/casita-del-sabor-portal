@@ -1,53 +1,139 @@
-<header class="hero d-flex flex-column justify-content-center align-items-center text-center">
-    <div class="container">
-        <h1 class="display-4">Casita del Sabor</h1>
-        <p class="lead">Experience the Taste of Home</p>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  HERO                                                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="hero-section">
+  <img
+    src="assets/images/banner.png"
+    alt="Especias y condimentos variados"
+    class="hero-bg"
+  />
+  <div class="hero-overlay"></div>
 
-        <button class="btn btn-warning text-white mt-3" (click)="goToCatalog()"><i class="bi bi-box-seam mx-2"></i>Ver Catalogo</button>
+  <div class="hero-content">
+    <h1 class="hero-title animate-fade-up">Casita del Sabor</h1>
+    <p class="hero-subtitle animate-fade-up animate-delay-1">
+      Experimenta el Sabor de Casa
+    </p>
+    <div class="animate-fade-scale animate-delay-2">
+      <a routerLink="/catalog" class="hero-cta">
+        <i class="bi bi-book"></i>
+        Ver Catálogo
+      </a>
     </div>
-</header>
-
-<div class="separator"></div>
-
-<section class="py-5 bg-danger text-white">
-    <div class="container">
-        <div class="row g-4 justify-content-center">
-            <div class="col-6 col-sm-4 col-md-3 d-flex flex-column align-items-center">
-                <img src="assets/images/dried-fruits-svgrepo-com.svg" alt="Frutos secos" class="section-img mb-3">
-                <h5 class="text-center">Frutos secos y Semillas</h5>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 d-flex flex-column align-items-center">
-                <img src="assets/images/spices-svgrepo-com.svg" alt="Especias" class="section-img mb-3">
-                <h5 class="text-center">Especias</h5>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 d-flex flex-column align-items-center">
-                <img src="assets/images/sauce-svgrepo-com.svg" alt="Salsas" class="section-img mb-3">
-                <h5 class="text-center">Salsas</h5>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 d-flex flex-column align-items-center">
-                <img src="assets/images/mixing-svgrepo-com.svg" alt="Mezclas" class="section-img mb-3">
-                <h5 class="text-center">Mezclas</h5>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
-<div class="separator"></div>
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  CATEGORIES                                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="categories-section">
+  <div class="container">
 
-<section class="py-5 bg-white" id="about">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0">
-                <h2>About Us</h2>
-                <p>Nuestro compromiso es brindar a cada una de las familias colombianas una variedad de productos que
-                    cumplan con las necesidades y expectativas de bienestar, nutrición, economía y degustación en la
-                    cocina</p>
-            </div>
-            <div class="col-md-6">
-                <div class="about-us-wrap mh-100 mw-100 d-flex justify-content-center align-items-center">
-                    <img src="assets/images/Indian_Spices-removebg-preview.png" alt="About Us Image" class="about-us-img">
-                </div>
-            </div>
+    <!-- Section heading -->
+    <h2 class="categories-heading scroll-reveal" style="--delay: 0s">Nuestros Servicios</h2>
+
+    <div class="row g-4 g-md-5 justify-content-center">
+
+      <div class="col-12 col-sm-6 col-lg-3" routerLink="/catalog">
+        <div class="category-card scroll-reveal" style="--delay: 0.1s">
+          <div class="category-icon-wrap">
+            <i class="bi bi-egg-fried"></i>
+          </div>
+          <h3 class="category-title">Frutos Secos y Semillas</h3>
+          <p class="category-desc">
+            Maní, uvas pasas y almendras para tus recetas y snacks saludables.
+          </p>
         </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3" routerLink="/catalog">
+        <div class="category-card scroll-reveal" style="--delay: 0.25s">
+          <div class="category-icon-wrap">
+            <i class="bi bi-flower1"></i>
+          </div>
+          <h3 class="category-title">Especias</h3>
+          <p class="category-desc">
+            Orégano, cúrcuma, canela y las mejores especias para tus comidas.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3" routerLink="/catalog">
+        <div class="category-card scroll-reveal" style="--delay: 0.4s">
+          <div class="category-icon-wrap">
+            <i class="bi bi-intersect"></i>
+          </div>
+          <h3 class="category-title">Mezclas</h3>
+          <p class="category-desc">
+            Combinaciones únicas y faciles de usar para realzar tus platos favoritos.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="category-card scroll-reveal" style="--delay: 0.55s">
+          <div class="category-icon-wrap">
+            <i class="bi bi-building-gear"></i>
+          </div>
+          <h3 class="category-title">Servicio de Maquilado</h3>
+          <p class="category-desc">
+            Empaquetamos tus productos bajo tu marca y especificaciones. Confía en nuestra experiencia para llevar tu producto al mercado.
+          </p>
+        </div>
+      </div>
+
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  ABOUT                                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="about-section">
+  <div class="container about-container">
+
+    <div class="about-row scroll-reveal slide-left" style="--delay: 0s">
+      <div class="about-icon-wrap">
+        <i class="bi bi-crosshair"></i>
+      </div>
+      <div class="about-body">
+        <h2 class="about-title">Misión</h2>
+        <p class="about-text">
+          Nuestro compromiso es la satisfacción de las necesidades y expectativas del cliente,
+          suministrándole soluciones de alimentación nutricional con productos que brindan
+          bienestar a sus consumidores, garantizando su satisfacción y alta calidad en el tiempo.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-row scroll-reveal slide-right" style="--delay: 0s">
+      <div class="about-icon-wrap">
+        <i class="bi bi-eye"></i>
+      </div>
+      <div class="about-body">
+        <h2 class="about-title">Visión</h2>
+        <p class="about-text">
+          Ser la mejor empresa de producción y comercialización de productos nutritivos,
+          haciendo presencia en el sector alimenticio de todo el país mediante alianzas
+          estratégicas con nuestros proveedores y clientes para ofrecer mayor diversidad
+          en calidad y servicio.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-row scroll-reveal slide-left" style="--delay: 0s">
+      <div class="about-icon-wrap">
+        <i class="bi bi-award"></i>
+      </div>
+      <div class="about-body">
+        <h2 class="about-title">Política de Calidad</h2>
+        <p class="about-text">
+          Proporcionar calidad de vida al consumidor con alternativas de productos que
+          satisfacen sus aspiraciones de nutrición, salud y bienestar, e impulsar
+          estrategias para promover estilos de vida saludables y de alimentación balanceada.
+        </p>
+      </div>
+    </div>
+
+  </div>
 </section>

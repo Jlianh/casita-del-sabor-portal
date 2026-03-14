@@ -1,8 +1,8 @@
 export interface ProductsCart {
     id: number;
     name: string;
-    unitaryPrice: number;
+    gramaje: string;
     quantity: number;
-    totalPrice: number;
     image?: string;
+    index ?: number;
 }
