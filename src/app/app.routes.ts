@@ -3,6 +3,7 @@ import { CatalogDetails } from './catalog/catalog-details/catalog-details';
 import { CatalogQuotation } from './catalog/catalog-quotation/catalog-quotation';
 import { Catalog } from './catalog/catalog-home/catalog';
 import { Home } from './catalog/home';
+import { Packaging } from './catalog/packaging/packaging';
 
 
 export const routes: Routes = [
@@ -10,5 +11,6 @@ export const routes: Routes = [
     { path: 'quotation', component: CatalogQuotation},
     { path: 'catalog', component:Catalog},
     { path: 'home', component:Home},
+    { path: 'packaging', component:Packaging},
     { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
