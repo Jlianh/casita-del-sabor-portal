@@ -4,44 +4,69 @@
     "imagen": "sazonador-completo.jpg",
     "nombre": "Adobo Sazonador Completo",
     "categoria": "Condimentos",
-    "usos": "Carnes Rojas y Blancas, Granos, Arroz, Pastas, Huevos, Sopas, Cremas y Salsas.",
+    "descripcion": "Carnes Rojas y Blancas, Granos, Arroz, Pastas, Huevos, Sopas, Cremas y Salsas.",
     "ingredientes": "Sémola de arroz, Sal, Cebolla deshidratada, Ajo deshidratado, Tartrazina C.I. 19140 (E-102), Rojo Ponceau 4R C.I. 16255 (E-124), Comino, Pimienta, Laurel, Tomillo y Orégano.",
     "codigo_nsa": "NSA-0008571-2020",
     "gramajes": [
-      "30 g",
-      "60 g",
-      "125 g",
-      "500 g"
+      {
+        "gramos": 60,
+        "unidades": 25,
+        "cod_barras": "7707350880018"
+      },
+      {
+        "gramos": 125,
+        "unidades": 25,
+        "cod_barras": "7707350880216"
+      },
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350880285"
+      }
     ],
-    "embalaje": "Corrugado de 25 unidades en las presentaciones de x 30 g, 60 g, 125 g, y de 1 unidad en 500 g."
+    "embalaje": "Corrugado de 25 unidades en las presentaciones de 60 g, 125 g, y de 1 unidad en 500 g."
   },
   {
     "id": 2,
     "imagen": "ajo.jpg",
     "nombre": "Condimento de Ajo",
     "categoria": "Condimentos",
-    "usos": "Arroz, Salchichas, Hamburguesas, Pastas, Salsas, Entre otros.",
+    "descripcion": "Arroz, Salchichas, Hamburguesas, Pastas, Salsas, Entre otros.",
     "ingredientes": "Sémola de arroz, Ajo deshidratado y Sal.",
     "codigo_nsa": "NSA-0008529-2020",
     "gramajes": [
-      "30 g",
-      "60 g",
-      "500 g"
+      {
+        "gramos": 60,
+        "unidades": 25,
+        "cod_barras": "7707350880025"
+      },
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350880278"
+      }
     ],
-    "embalaje": "Corrugado de 25 unidades en las presentaciones de 30 g, 60 g, y de 1 unidad en 500 g."
+    "embalaje": "Corrugado de 25 unidades en las presentaciones de 60 g, y de 1 unidad en 500 g."
   },
   {
     "id": 3,
     "imagen": "comino.jpg",
     "nombre": "Condimento de Comino",
     "categoria": "Condimentos",
-    "usos": "Carnes Rojas y Blancas, Aves, Granos, Pastas, Sopas, Ensaladas, Guisos, Entre otros.",
+    "descripcion": "Carnes Rojas y Blancas, Aves, Granos, Pastas, Sopas, Ensaladas, Guisos, Entre otros.",
     "ingredientes": "Harina de cereales (Trigo), Comino en pepa, color verde comino (CP110VC004), Sal.",
     "codigo_nsa": "NSA-0008529-2020",
     "gramajes": [
-      "30 g",
-      "60 g",
-      "500 g"
+      {
+        "gramos": 60,
+        "unidades": 25,
+        "cod_barras": "7707350880032"
+      },
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350880261"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 30 g, 60 g, y de 1 unidad en 500 g."
   },
@@ -50,11 +75,15 @@
     "imagen": "comino-pepa.jpg",
     "nombre": "Condimento de Comino Pepa",
     "categoria": "Semillas",
-    "usos": "Carnes Rojas y Blancas, Aves, Granos, Pastas, Sopas, Ensaladas, Guisos, Entre otros.",
+    "descripcion": "Carnes Rojas y Blancas, Aves, Granos, Pastas, Sopas, Ensaladas, Guisos, Entre otros.",
     "ingredientes": "Comino puro pepa.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "32 g"
+      {
+        "gramos": 32,
+        "unidades": 25,
+        "cod_barras": "7707350880049"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 32 g."
   },
@@ -63,75 +92,106 @@
     "imagen": "color-rojo.jpg",
     "nombre": "Color Rojo",
     "categoria": "Condimentos",
-    "usos": "Carnes, Aves, Pescados, Mariscos, Granos, Legumbres, Entre otros.",
+    "descripcion": "Carnes, Aves, Pescados, Mariscos, Granos, Legumbres, Entre otros.",
     "ingredientes": "Sémola de arroz, Colorantes artificiales Rojo Púnzo 4R C.I. 16255, Tartrazina C.C. 19140.",
     "codigo_nsa": "Excepción de Registro (Artículo 41 Decreto 3075/97)",
     "gramajes": [
-      "30 g",
-      "60 g",
-      "125 g",
-      "500 g"
+      {
+        "gramos": 60,
+        "unidades": 25,
+        "cod_barras": "7707350880056"
+      },
+      {
+        "gramos": 125,
+        "unidades": 25,
+        "cod_barras": "7707350880223"
+      },
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350880247"
+      }
     ],
-    "embalaje": "Corrugado de 25 unidades en las presentaciones de x 30 g, 60 g, 125 g, y de 1 unidad en 500 g."
+    "embalaje": "Corrugado de 25 unidades en las presentaciones de 60 g, 125 g, y de 1 unidad en 500 g."
   },
   {
     "id": 6,
-    "imagen": "color-amarillo.jpg",
+    "imagen": "color-amarilo.jpg",
     "nombre": "Color Amarillo",
     "categoria": "Condimentos",
-    "usos": "Carnes Rojas y Blancas, Aves, Pescados, Mariscos, Granos, Pastas, Huevos, Legumbres, Ensaladas, Salsas, Guacamole, Cocteles de Licores, Entre otros.",
+    "descripcion": "Carnes Rojas y Blancas, Aves, Pescados, Mariscos, Granos, Pastas, Huevos, Legumbres, Ensaladas, Salsas, Guacamole, Cocteles de Licores, Entre otros.",
     "ingredientes": "Sémola de arroz, Colorantes artificiales Tartrazina C.I. 19140, Rojo Púnzo 4R C.I. 16255.",
     "codigo_nsa": "Excepción de Registro (Artículo 41 Decreto 3075/97)",
     "gramajes": [
-      "30 g",
-      "60 g",
-      "125 g",
-      "500 g"
+      {
+        "gramos": 60,
+        "unidades": 25,
+        "cod_barras": "7707350880063"
+      },
+      {
+        "gramos": 125,
+        "unidades": 25,
+        "cod_barras": "7707350880230"
+      },
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350880254"
+      }
     ],
-    "embalaje": "Corrugado de 25 unidades en las presentaciones de x 30 g, 60 g, 125 g, y de 1 unidad en 500 g."
-  },
-  {
-    "id": 7,
-    "imagen": "tricasita.jpg",
-    "nombre": "Tricasita",
-    "categoria": "Condimentos",
-    "usos": "Condimento en polvo ideal para sazonar.",
-    "ingredientes": "Sémola de arroz, Sal, Ajo deshidratado, Colorante Artificial (Tartrazina C.I. 19140, Rojo Púnzo 4R C.I. 16255), Comino, Pimienta. Contiene Tartrazina.",
-    "codigo_nsa": "NSA-0008571-2020",
-    "gramajes": [
-      "30 g",
-      "500 g"
-    ],
-    "embalaje": "Corrugado de 25 unidades en las presentaciones de x 30 g."
+    "embalaje": "Corrugado de 25 unidades en las presentaciones de 60 g, 125 g, y de 1 unidad en 500 g."
   },
   {
     "id": 8,
     "imagen": "canela.jpg",
     "nombre": "Canela",
     "categoria": "Especias",
-    "usos": "Canela seleccionada de la mejor calidad.",
+    "descripcion": "Canela seleccionada de la mejor calidad.",
     "ingredientes": "Canela pura.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "8 g",
-      "12 g",
-      "20 g",
-      "30 g",
-      "125 g",
-      "500 g"
+      {
+        "gramos": 8,
+        "unidades": 50,
+        "cod_barras": "7707350880070"
+      },
+      {
+        "gramos": 12,
+        "unidades": 50,
+        "cod_barras": "7707350880087"
+      },
+      {
+        "gramos": 20,
+        "unidades": 50,
+        "cod_barras": "7707350880100"
+      },
+      {
+        "gramos": 30,
+        "unidades": 50,
+        "cod_barras": "7707350880117"
+      },
+      {
+        "gramos": 125,
+        "unidades": 1,
+        "cod_barras": "7707350880117"
+      }
     ],
-    "embalaje": "Corrugado de 50 unidades en las presentaciones de x 8 g, 12 g, 20 g, y 30 g."
+    "embalaje": "Corrugado de 50 unidades en las presentaciones de x 8 g, 12 g, 20 g, 30g y una unidad en 125 g."
   },
   {
     "id": 9,
     "imagen": "canela-molida.jpg",
     "nombre": "Canela Molida",
     "categoria": "Especias",
-    "usos": "Canela pura molida. No contiene Harina.",
+    "descripcion": "Canela pura molida. No contiene Harina.",
     "ingredientes": "Canela pura.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "15 g"
+      {
+        "gramos": 15,
+        "unidades": 25,
+        "cod_barras": "7707350880094"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 15 g."
   },
@@ -140,12 +200,20 @@
     "imagen": "bicarbonato.jpg",
     "nombre": "Bicarbonato",
     "categoria": "Condimentos",
-    "usos": "Bicarbonato. Uso culinario.",
+    "descripcion": "Bicarbonato. Uso culinario.",
     "ingredientes": "Bicarbonato de Sodio.",
     "codigo_nsa": "Excepción de Registro (Artículo 41 Decreto 3075/97)",
     "gramajes": [
-      "30 g",
-      "500 g"
+      {
+        "gramos": 30,
+        "unidades": 25,
+        "cod_barras": "7707350880131"
+      },
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350880315"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en 30 g y 1 unidad en las presentaciones de 500 g."
   },
@@ -154,11 +222,15 @@
     "imagen": "laurel-puro.jpg",
     "nombre": "Laurel Puro",
     "categoria": "Especias",
-    "usos": "Laurel Puro deshidratado en escama.",
+    "descripcion": "Laurel Puro deshidratado en escama.",
     "ingredientes": "Laurel Puro deshidratado en escama.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "40 g"
+      {
+        "gramos": 35,
+        "unidades": 25,
+        "cod_barras": "7707350880155"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 40 g."
   },
@@ -167,11 +239,15 @@
     "imagen": "oregano-puro.jpg",
     "nombre": "Orégano Puro",
     "categoria": "Especias",
-    "usos": "Orégano puro deshidratado en escama.",
+    "descripcion": "Orégano puro deshidratado en escama.",
     "ingredientes": "Orégano puro deshidratado en escama.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "12 g"
+      {
+        "gramos": 12,
+        "unidades": 25,
+        "cod_barras": "7707350880179"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 12 g."
   },
@@ -180,11 +256,15 @@
     "imagen": "tomillo-puro.jpg",
     "nombre": "Tomillo Puro",
     "categoria": "Especias",
-    "usos": "Tomillo Puro deshidratado en escama.",
+    "descripcion": "Tomillo Puro deshidratado en escama.",
     "ingredientes": "Tomillo Puro deshidratado en escama.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "20 g"
+      {
+        "gramos": 20,
+        "unidades": 25,
+        "cod_barras": "7707350880162"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 20 g."
   },
@@ -193,11 +273,15 @@
     "imagen": "clavo-pepa.jpg",
     "nombre": "Clavo Pepa",
     "categoria": "Especias",
-    "usos": "Clavo puro pepa.",
+    "descripcion": "Clavo puro pepa.",
     "ingredientes": "Clavo puro pepa.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "10 g"
+      {
+        "gramos": 10,
+        "unidades": 25,
+        "cod_barras": "7707350880186"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 10 g."
   },
@@ -206,12 +290,20 @@
     "imagen": "pimienta.jpg",
     "nombre": "Condimento de Pimienta",
     "categoria": "Especias",
-    "usos": "Condimento de pimienta.",
+    "descripcion": "Condimento de pimienta.",
     "ingredientes": "Sémola de arroz, Pimienta pura pepa, sal.",
     "codigo_nsa": "NSA-0008529-2020",
     "gramajes": [
-      "45 g",
-      "500 g"
+      {
+        "gramos": 45,
+        "unidades": 25,
+        "cod_barras": "7707350880193"
+      },
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350881183"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 45 g y 1 unidad en 500 g."
   },
@@ -220,11 +312,15 @@
     "imagen": "pimienta-pepa.jpg",
     "nombre": "Condimento de Pimienta Pepa",
     "categoria": "Especias",
-    "usos": "Pimienta pura en pepa.",
+    "descripcion": "Pimienta pura en pepa.",
     "ingredientes": "Pimienta pura en pepa.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "40 g"
+      {
+        "gramos": 40,
+        "unidades": 25,
+        "cod_barras": "7707350880209"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 40 g."
   },
@@ -233,12 +329,20 @@
     "imagen": "linaza.jpg",
     "nombre": "Linaza",
     "categoria": "Semillas",
-    "usos": "Semilla de lino para consumo alimenticio.",
+    "descripcion": "Semilla de lino para consumo alimenticio.",
     "ingredientes": "Semilla de lino.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "40 g",
-      "500 g"
+      {
+        "gramos": 40,
+        "unidades": 25,
+        "cod_barras": "7707350880476"
+      },
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350880322"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 40 g y 1 unidad en 500 g."
   },
@@ -247,11 +351,15 @@
     "imagen": "linaza-molida.jpg",
     "nombre": "Linaza Molida",
     "categoria": "Semillas",
-    "usos": "Semilla de lino molida para consumo alimenticio.",
+    "descripcion": "Semilla de lino molida para consumo alimenticio.",
     "ingredientes": "Semilla de lino.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "500 g"
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350880346"
+      }
     ],
     "embalaje": "Corrugado de 1 unidad en las presentaciones de x 500 g."
   },
@@ -260,11 +368,15 @@
     "imagen": "anis-puro-pepa.jpg",
     "nombre": "Anis Puro Pepa",
     "categoria": "Especias",
-    "usos": "Anis puro en pepa.",
+    "descripcion": "Anis puro en pepa.",
     "ingredientes": "Anis puro en pepa.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "20 g"
+      {
+        "gramos": 20,
+        "unidades": 25,
+        "cod_barras": "7707350880490"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 20 g."
   },
@@ -273,11 +385,15 @@
     "imagen": "anis-estrella.jpg",
     "nombre": "Anis Estrella",
     "categoria": "Especias",
-    "usos": "Anis estrella puro.",
+    "descripcion": "Anis estrella puro.",
     "ingredientes": "Anis estrella puro.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "10 g"
+      {
+        "gramos": 10,
+        "unidades": 25,
+        "cod_barras": "7707350880506"
+      }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 10 g."
   },
@@ -286,11 +402,15 @@
     "imagen": "ajonjoli-descortezado.jpg",
     "nombre": "Ajonjolí Descortezado",
     "categoria": "Semillas",
-    "usos": "Semillas de sésamo descortezadas.",
+    "descripcion": "Semillas de sésamo descortezadas.",
     "ingredientes": "Semillas de sésamo.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
-      "70 g"
+      {
+        "gramos": 70,
+        "unidades": 12,
+        "cod_barras": "7707350880568"
+      }
     ],
     "embalaje": "Corrugado de 12 unidades en las presentaciones de x 70 g."
   },
@@ -299,24 +419,32 @@
     "imagen": "almendra-dulce.jpg",
     "nombre": "Almendra Dulce",
     "categoria": "Dulces",
-    "usos": "Almendras confitadas con colores artificiales.",
+    "descripcion": "Almendras confitadas con colores artificiales.",
     "ingredientes": "Azúcar, Almendras, Vainilla, Colores Artificiales (Color Amarillo No. 5 Tartrazina FD&C, Color Amarillo No. 6 FD&C, (FD&C) Rojo No. 40 E-129n, Dióxido de Titanio E-171).",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 40,
+        "unidades": 12,
+        "cod_barras": "7707350880582"
+      }
     ],
-    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 80 g."
+    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 40 g."
   },
   {
     "id": 23,
     "imagen": "almendra-natural.jpg",
     "nombre": "Almendra Natural",
     "categoria": "Frutos secos",
-    "usos": "Almendra natural.",
+    "descripcion": "Almendra natural.",
     "ingredientes": "Almendra Natural.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 80,
+        "unidades": 12,
+        "cod_barras": "7707350880575"
+      }
     ],
     "embalaje": "Corrugado de 12 unidades en las presentaciones de x 80 g."
   },
@@ -325,11 +453,15 @@
     "imagen": "ciruela-pasa.jpg",
     "nombre": "Ciruela Pasa",
     "categoria": "Frutos secos",
-    "usos": "Ciruelas pasas sin semilla.",
+    "descripcion": "Ciruelas pasas sin semilla.",
     "ingredientes": "Ciruelas sin carozo y sorbato de potasio.",
     "codigo_nsa": "NSA-0008551-2020",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 80,
+        "unidades": 20,
+        "cod_barras": "7707350880452"
+      }
     ],
     "embalaje": "Corrugado de 20 unidades en las presentaciones de x 80 g."
   },
@@ -337,13 +469,21 @@
     "id": 25,
     "imagen": "coco-cabello-de-angel.jpg",
     "nombre": "Coco Cabello de Angel",
-    "categoria": "Dulces",
-    "usos": "Coco rallado deshidratado blanco. No contiene Azúcar.",
+    "categoria": "Frutos secos",
+    "descripcion": "Coco rallado deshidratado blanco. No contiene Azúcar.",
     "ingredientes": "Coco rallado deshidratado blanco.",
     "codigo_nsa": "NSA-0008551-2020",
     "gramajes": [
-      "30 g",
-      "50 g"
+      {
+        "gramos": 30,
+        "unidades": 25,
+        "cod_barras": "7707350881138"
+      },
+      {
+        "gramos": 50,
+        "unidades": 20,
+        "cod_barras": "7707350880445"
+      }
     ],
     "embalaje": "Corrugado de 20 unidades en las presentaciones de x 50 g y de 12 unidades en 30 g."
   },
@@ -352,50 +492,66 @@
     "imagen": "habas.jpg",
     "nombre": "Habas",
     "categoria": "Frutos secos",
-    "usos": "Habas fritas. Puede contener trazas de cacahuates y otros frutos de cáscara.",
+    "descripcion": "Habas fritas. Puede contener trazas de cacahuates y otros frutos de cáscara.",
     "ingredientes": "Habas, aceite de palma y sal (2%).",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "70 g"
+      {
+        "gramos": 60,
+        "unidades": 12,
+        "cod_barras": "7707350880612"
+      }
     ],
-    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 70 g."
+    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 60 g."
   },
   {
     "id": 27,
     "imagen": "mani-con-ajonjoli.jpg",
     "nombre": "Maní con Ajonjolí",
     "categoria": "Frutos secos",
-    "usos": "Maní con ajonjolí snack.",
+    "descripcion": "Maní con ajonjolí snack.",
     "ingredientes": "Maní, azúcar, semillas de ajonjolí y saborizante artificial.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 70,
+        "unidades": 12,
+        "cod_barras": "7707350880636"
+      }
     ],
-    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 80 g."
+    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 70 g."
   },
   {
     "id": 28,
     "imagen": "mani-dulce.jpg",
     "nombre": "Maní Dulce",
     "categoria": "Dulces",
-    "usos": "Maní dulce snack.",
+    "descripcion": "Maní dulce snack.",
     "ingredientes": "Maní, azúcar, saborizante artificial.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 70,
+        "unidades": 12,
+        "cod_barras": "7707350880704"
+      }
     ],
-    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 80 g."
+    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 70 g."
   },
   {
     "id": 29,
     "imagen": "mani-arcoiris.jpg",
     "nombre": "Maní Arcoiris",
     "categoria": "Dulces",
-    "usos": "Maní cubierto de chocolate con colores artificiales.",
+    "descripcion": "Maní cubierto de chocolate con colores artificiales.",
     "ingredientes": "Chocolate (Azúcar, manteca de cacao, Licor de cacao, Lecticina E-322, vainilla), maní, azúcar y colores artificiales.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "50 g"
+      {
+        "gramos": 50,
+        "unidades": 12,
+        "cod_barras": "7707350880780"
+      }
     ],
     "embalaje": "Corrugado de 12 unidades en las presentaciones de x 50 g."
   },
@@ -404,37 +560,49 @@
     "imagen": "mani-mixto.jpg",
     "nombre": "Maní Mixto",
     "categoria": "Frutos secos",
-    "usos": "Maní seleccionado con uvas pasas.",
+    "descripcion": "Maní seleccionado con uvas pasas.",
     "ingredientes": "Maní seleccionado, uvas pasas seleccionadas y aceite vegetal.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 70,
+        "unidades": 12,
+        "cod_barras": "7707350880650"
+      }
     ],
-    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 80 g."
+    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 70 g."
   },
   {
     "id": 31,
     "imagen": "mani-natural.jpg",
     "nombre": "Maní Natural",
     "categoria": "Frutos secos",
-    "usos": "Maní seleccionado natural.",
+    "descripcion": "Maní seleccionado natural.",
     "ingredientes": "Maní seleccionado.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 70,
+        "unidades": 12,
+        "cod_barras": "7707350880674"
+      }
     ],
-    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 80 g."
+    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 70 g."
   },
   {
     "id": 32,
     "imagen": "mani-picante.jpg",
     "nombre": "Maní Picante",
     "categoria": "Frutos secos",
-    "usos": "Maní picante snack.",
+    "descripcion": "Maní picante snack.",
     "ingredientes": "Maní seleccionado, aceite vegetal, paprika, chile en polvo y sal.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 80,
+        "unidades": 12,
+        "cod_barras": "7707350880681"
+      }
     ],
     "embalaje": "Corrugado de 12 unidades en las presentaciones de x 80 g."
   },
@@ -443,24 +611,32 @@
     "imagen": "mani-salado.jpg",
     "nombre": "Maní Salado",
     "categoria": "Frutos secos",
-    "usos": "Maní salado snack.",
+    "descripcion": "Maní salado snack.",
     "ingredientes": "Maní seleccionado, aceite vegetal y sal.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 70,
+        "unidades": 12,
+        "cod_barras": "7707350880728"
+      }
     ],
-    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 80 g."
+    "embalaje": "Corrugado de 12 unidades en las presentaciones de x 70 g."
   },
   {
     "id": 34,
     "imagen": "morigomas.jpg",
     "nombre": "Morigomas",
     "categoria": "Dulces",
-    "usos": "Gomitas sabor a mora con cobertura.",
+    "descripcion": "Gomitas sabor a mora con cobertura.",
     "ingredientes": "Azúcar, Agua, Azúcar invertido, Jarabe de Glucosa, Gelatina, Ácido cítrico anhidro U.S.P., sabor artificial a mora, colorantes artificiales. Gragea: Azúcar, azúcar invertido, Almidón, Agua, colorantes artificiales.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "50 g"
+      {
+        "gramos": 50,
+        "unidades": 12,
+        "cod_barras": "7707350880797"
+      }
     ],
     "embalaje": "Corrugado de 12 unidades en las presentaciones de x 50 g."
   },
@@ -469,11 +645,15 @@
     "imagen": "nuez-del-brasil.jpg",
     "nombre": "Nuez del Brasil",
     "categoria": "Frutos secos",
-    "usos": "Nuez del Brasil enteras.",
+    "descripcion": "Nuez del Brasil enteras.",
     "ingredientes": "Nuez del Brasil enteras.",
     "codigo_nsa": "En trámite",
     "gramajes": [
-      "80 g"
+      {
+        "gramos": 80,
+        "unidades": 12,
+        "cod_barras": "7707350880742"
+      }
     ],
     "embalaje": "Corrugado de 12 unidades en las presentaciones de x 80 g."
   },
@@ -482,16 +662,70 @@
     "imagen": "uvas-pasas.png",
     "nombre": "Uvas Pasas",
     "categoria": "Frutos secos",
-    "usos": "Uvas pasas para snack y repostería.",
+    "descripcion": "Uvas pasas para snack y repostería.",
     "ingredientes": "Pasas de uva y aceite vegetal.",
     "codigo_nsa": "NSA-0008551-2020",
     "gramajes": [
-      "40 g",
-      "60 g",
-      "90 g",
-      "125 g",
-      "500 g"
+      {
+        "gramos": 40,
+        "unidades": 25,
+        "cod_barras": "7707350880391"
+      },
+      {
+        "gramos": 60,
+        "unidades": 25,
+        "cod_barras": "7707350881121"
+      },
+      {
+        "gramos": 90,
+        "unidades": 20,
+        "cod_barras": "7707350880407"
+      },
+      {
+        "gramos": 200,
+        "unidades": 1,
+        "cod_barras": "7707350881077"
+      },
+      {
+        "gramos": 500,
+        "unidades": 1,
+        "cod_barras": "7707350880436"
+      }
     ],
     "embalaje": "Corrugado de 20 unidades en las presentaciones de x 60 g, 90 g y 125 g."
+  },
+  {
+    "id": 37,
+    "imagen": "nuez-moscada.jpg",
+    "nombre": "Nuez Moscada",
+    "categoria": "Especias",
+    "usos": "Repostería, salsas bechamel, carnes y sopas.",
+    "ingredientes": "Nuez moscada.",
+    "codigo_nsa": "NSA-003476-2017",
+    "gramajes": [
+      {
+        "gramos": 15,
+        "unidades": 25,
+        "cod_barras": "7707350880124"
+      }
+    ],
+    "embalaje": "Corrugado de 25 unidades en las presentaciones de x 15 g."
+  },
+  {
+    "id": 38,
+    "imagen": "clavo-molido.jpg",
+    "nombre": "Clavo Molido",
+    "categoria": "Especias",
+    "usos": "Repostería, sopas y guisos.",
+    "ingredientes": "Clavo puro molido.",
+    "codigo_nsa": "NSA-003476-2017",
+    "gramajes": [
+      {
+        "gramos": 10,
+        "unidades": 50,
+        "cod_barras": "7707350880933"
+      }
+    ],
+    "embalaje": "Corrugado de 50 unidades en las presentaciones de x 10 g."
   }
 ]

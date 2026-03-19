@@ -116,32 +116,6 @@
 }
  
 /* ════════════════════════════════════════════════════════
-   ¿QUÉ ES?
-   ════════════════════════════════════════════════════════ */
-.maq-what {
-  background: #faf7f2;
-  padding: 5rem 1rem;
-}
- 
-@media (min-width: 768px) { .maq-what { padding: 7rem 1rem; } }
- 
-.maq-what-inner {
-  max-width: 820px;
-  margin: 0 auto;
-  text-align: center;
-}
- 
-.maq-what-text {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.05rem;
-  color: #9b8c7a;
-  line-height: 1.85;
-  margin: 0;
-}
- 
-.maq-what-text strong { color: #1a1008; }
- 
-/* ════════════════════════════════════════════════════════
    MUESTRAS
    ════════════════════════════════════════════════════════ */
 .maq-samples {
@@ -186,5 +160,39 @@
   color: #1a1008;
   text-align: center;
   padding: 0.75rem 0.5rem;
+}
+ 
+/* ── Carousel wrapper — controls overall size ──────────── */
+.carousel-wrapper {
+  width: 100%;
+  max-width: 520px;   /* ← change this to make it wider/narrower */
+  height: 580px;      /* ← change this to make it taller/shorter */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+ 
+/* ── Image fills the fixed box, crops cleanly ──────────── */
+.carousel-img {
+  width: 100%;
+  height: 580px;      /* ← must match wrapper height */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+ 
+/* ── Caption styling ───────────────────────────────────── */
+.carousel-caption-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  margin: 0;
+}
+ 
+/* ── Responsive: shrink a little on mobile ─────────────── */
+@media (max-width: 576px) {
+  .carousel-wrapper { height: 260px; }
+  .carousel-img     { height: 260px; }
 }
  

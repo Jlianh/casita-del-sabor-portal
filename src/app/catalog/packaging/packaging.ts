@@ -1,6 +1,7 @@
-import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { PackagingService } from '../../services/packaging-service';
  
 @Component({
   selector: 'app-packaging',
@@ -9,9 +10,15 @@ import { RouterModule } from '@angular/router';
   templateUrl: './packaging.html',
   styleUrl: './packaging.css'
 })
-export class Packaging implements AfterViewInit {
+export class Packaging implements AfterViewInit, OnInit {
+
+  packaging: any[] = [];
  
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef, private packagingService: PackagingService) {}
+
+  ngOnInit(): void {
+    this.packaging = this.packagingService.GetPackaging();
+  }
  
   ngAfterViewInit(): void {
     const targets = this.el.nativeElement.querySelectorAll('.scroll-reveal');

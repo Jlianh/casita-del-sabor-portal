@@ -42,7 +42,7 @@
             <div class="info-rows mt-3">
               <p>
                 <span class="info-label">Usos:</span>
-                {{ endowmentDetail.usos }}
+                {{ endowmentDetail.descripcion }}
               </p>
               <p>
                 <span class="info-label">Ingredientes:</span>
@@ -76,7 +76,7 @@
                       (click)="selectPresentation(i)"
                     />
                     <label class="form-check-label" [for]="'check_' + i">
-                      {{ gramaje }}
+                      {{ gramaje.gramos }} x {{ gramaje.unidades }} 
                     </label>
                   </div>
 

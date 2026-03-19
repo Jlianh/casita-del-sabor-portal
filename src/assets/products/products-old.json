@@ -52,5 +52,22 @@
   { "id": 47, "nombre": "Linaza", "imagen": "linaza.jpg", "descripcion": "Semillas de linaza naturales.", "precio": 3500, "categoria": "Semillas" },
   { "id": 48, "nombre": "Color Rojo", "imagen": "color-rojo.jpg", "descripcion": "Colorante rojo tradicional.", "precio": 3500, "categoria": "Condimentos" },
   { "id": 49, "nombre": "Canela Pura", "imagen": "canela-pura.jpg", "descripcion": "Canela natural en rama.", "precio": 4500, "categoria": "Especias" },
-  { "id": 50, "nombre": "Canela Premium Seleccionada", "imagen": "canela-premium-seleccionada.jpg", "descripcion": "Canela premium seleccionada en rama.", "precio": 6000, "categoria": "Especias" }
+  { "id": 50, "nombre": "Canela Premium Seleccionada", "imagen": "canela-premium-seleccionada.jpg", "descripcion": "Canela premium seleccionada en rama.", "precio": 6000, "categoria": "Especias" },
+  {
+    "id": 7,
+    "imagen": "tricasita.jpg",
+    "nombre": "Tricasita",
+    "categoria": "Condimentos",
+    "descripcion": "Condimento en polvo ideal para sazonar.",
+    "ingredientes": "Sémola de arroz, Sal, Ajo deshidratado, Colorante Artificial (Tartrazina C.I. 19140, Rojo Púnzo 4R C.I. 16255), Comino, Pimienta. Contiene Tartrazina.",
+    "codigo_nsa": "NSA-0008571-2020",
+    "gramajes": [
+      {
+        "gramos": 30,
+        "unidades": 25,
+        "cod_barras": "7707350880551"
+      }
+    ],
+    "embalaje": "Corrugado de 25 unidades en las presentaciones de x 30 g."
+  }
 ]
