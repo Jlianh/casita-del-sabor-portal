@@ -5,7 +5,7 @@
     "nombre": "Adobo Sazonador Completo",
     "categoria": "Condimentos",
     "descripcion": "Carnes Rojas y Blancas, Granos, Arroz, Pastas, Huevos, Sopas, Cremas y Salsas.",
-    "ingredientes": "Sémola de arroz, Sal, Cebolla deshidratada, Ajo deshidratado, Tartrazina C.I. 19140 (E-102), Rojo Ponceau 4R C.I. 16255 (E-124), Comino, Pimienta, Laurel, Tomillo y Orégano.",
+    "ingredientes": "Sémola de arroz, Cebolla deshidratada, Ajo deshidratado, Tartrazina C.I. 19140 (E-102), Rojo Ponceau 4R C.I. 16255 (E-124), Comino, Pimienta, Laurel, Tomillo y Orégano.",
     "codigo_nsa": "NSA-0008571-2020",
     "gramajes": [
       {
@@ -32,7 +32,7 @@
     "nombre": "Condimento de Ajo",
     "categoria": "Condimentos",
     "descripcion": "Arroz, Salchichas, Hamburguesas, Pastas, Salsas, Entre otros.",
-    "ingredientes": "Sémola de arroz, Ajo deshidratado y Sal.",
+    "ingredientes": "Sémola de arroz y Ajo deshidratado.",
     "codigo_nsa": "NSA-0008529-2020",
     "gramajes": [
       {
@@ -54,7 +54,7 @@
     "nombre": "Condimento de Comino",
     "categoria": "Condimentos",
     "descripcion": "Carnes Rojas y Blancas, Aves, Granos, Pastas, Sopas, Ensaladas, Guisos, Entre otros.",
-    "ingredientes": "Harina de cereales (Trigo), Comino en pepa, color verde comino (CP110VC004), Sal.",
+    "ingredientes": "Harina de cereales (Trigo), Comino en pepa y color verde comino (CP110VC004).",
     "codigo_nsa": "NSA-0008529-2020",
     "gramajes": [
       {
@@ -291,7 +291,7 @@
     "nombre": "Condimento de Pimienta",
     "categoria": "Especias",
     "descripcion": "Condimento de pimienta.",
-    "ingredientes": "Sémola de arroz, Pimienta pura pepa, sal.",
+    "ingredientes": "Sémola de arroz y Pimienta pura pepa.",
     "codigo_nsa": "NSA-0008529-2020",
     "gramajes": [
       {
@@ -493,7 +493,7 @@
     "nombre": "Habas",
     "categoria": "Frutos secos",
     "descripcion": "Habas fritas. Puede contener trazas de cacahuates y otros frutos de cáscara.",
-    "ingredientes": "Habas, aceite de palma y sal (2%).",
+    "ingredientes": "Habas y aceite de palma",
     "codigo_nsa": "En trámite",
     "gramajes": [
       {
@@ -595,7 +595,7 @@
     "nombre": "Maní Picante",
     "categoria": "Frutos secos",
     "descripcion": "Maní picante snack.",
-    "ingredientes": "Maní seleccionado, aceite vegetal, paprika, chile en polvo y sal.",
+    "ingredientes": "Maní seleccionado, aceite vegetal, paprika y chile en polvo",
     "codigo_nsa": "En trámite",
     "gramajes": [
       {
@@ -612,7 +612,7 @@
     "nombre": "Maní Salado",
     "categoria": "Frutos secos",
     "descripcion": "Maní salado snack.",
-    "ingredientes": "Maní seleccionado, aceite vegetal y sal.",
+    "ingredientes": "Maní seleccionado y aceite vegetal.",
     "codigo_nsa": "En trámite",
     "gramajes": [
       {
