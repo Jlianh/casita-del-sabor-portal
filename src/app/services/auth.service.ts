@@ -17,7 +17,9 @@ export class AuthService {
     private currentUserSubject = new BehaviorSubject<AppUser | null>(null);
     public currentUser$ = this.currentUserSubject.asObservable();
 
-    private apiUrl = 'http://localhost:3000/api/auth';
+    // private apiUrl = 'http://localhost:3000/api/auth';
+
+    private apiUrl = 'https://casita-del-sabor-email-service.vercel.app/api/auth';
 
     constructor(private loginService: LoginService, private http: HttpClient) {
         const cached = localStorage.getItem('currentUser');

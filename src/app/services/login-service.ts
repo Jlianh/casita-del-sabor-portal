@@ -8,7 +8,7 @@ export class LoginService {
 
     // private apiUrl = 'http://localhost:3000/api/auth/login';
 
-    private apiUrl = 'https://casita-del-sabor-auth-service.vercel.app/api/auth/login';
+    private apiUrl = 'https://casita-del-sabor-email-service.vercel.app/api/auth/login';
 
     constructor(private http: HttpClient) { }
 
