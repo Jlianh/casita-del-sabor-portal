@@ -687,14 +687,19 @@
         "cod_barras": "7707350880407"
       },
       {
+        "gramos": 125,
+        "unidades": 20,
+        "cod_barras": "7707350880407"
+      },
+      {
         "gramos": 200,
         "unidades": 1,
         "cod_barras": "7707350881077"
       },
       {
-        "gramos": 500,
+        "gramos": 400,
         "unidades": 1,
-        "cod_barras": "7707350880436"
+        "cod_barras": "7707350880438"
       }
     ],
     "embalaje": "Corrugado de 20 unidades en las presentaciones de x 60 g, 90 g y 125 g."
