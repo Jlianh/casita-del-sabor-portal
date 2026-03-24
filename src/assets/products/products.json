@@ -36,6 +36,11 @@
     "codigo_nsa": "NSA-0008529-2020",
     "gramajes": [
       {
+        "gramos": 30,
+        "unidades": 25,
+        "cod_barras": "7707350880544"
+      },
+      {
         "gramos": 60,
         "unidades": 25,
         "cod_barras": "7707350880025"
@@ -46,7 +51,7 @@
         "cod_barras": "7707350880278"
       }
     ],
-    "embalaje": "Corrugado de 25 unidades en las presentaciones de 60 g, y de 1 unidad en 500 g."
+    "embalaje": "Corrugado de 25 unidades en las presentaciones de 30 g, 60 g, y de 1 unidad en 500 g."
   },
   {
     "id": 3,
