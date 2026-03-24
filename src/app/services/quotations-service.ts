@@ -7,7 +7,7 @@ import { Quotation } from '../models/quotation';
   providedIn: 'root'
 })
 export class QuotationsService {
-  private apiUrl = 'https://casita-del-sabor-email-service.vercel.app/';
+  private apiUrl = 'https://casita-del-sabor-email-service.vercel.app';
 
   // private apiUrl = 'http://localhost:3000';
 
