@@ -1,0 +1,168 @@
+<div class="admin-page">
+
+  <!-- Decorative blobs -->
+  <div class="blob blob-top"></div>
+  <div class="blob blob-bottom"></div>
+
+  <div class="container admin-container position-relative">
+
+    <!-- Header -->
+    <div class="admin-header animate-fade-up">
+      <a routerLink="/catalog" class="back-link">
+        <i class="bi bi-arrow-left"></i> Volver al portal
+      </a>
+      <a routerLink="/home">
+        <img src="assets/images/logo.png" alt="Casita del Sabor" class="admin-logo" />
+      </a>
+    </div>
+
+    <!-- Grid -->
+    <div class="row g-4 g-lg-5">
+
+      <!-- ── Form (left) ─────────────────────────────────────────────────── -->
+      <div class="col-12 col-lg-5">
+        <div class="panel animate-slide-left sticky-panel">
+
+          <!-- Panel header -->
+          <div class="panel-header">
+            <div class="panel-icon">
+              <i class="bi bi-person-plus-fill"></i>
+            </div>
+            <div>
+              <h1 class="panel-title">Nuevo Vendedor</h1>
+              <p class="panel-subtitle">Registrar cuenta de acceso</p>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <form [formGroup]="sellerForm" (ngSubmit)="handleSubmit()" class="panel-body d-flex flex-column gap-3">
+
+            <!-- Name -->
+            <div class="form-field">
+              <label class="field-label" for="sellerName">Nombre completo</label>
+              <div class="input-wrap">
+                <i class="bi bi-person input-icon"></i>
+                <input type="text" id="sellerName" class="field-input"
+                  formControlName="name" placeholder="Ej: Jane Smith"
+                  [class.field-error]="isInvalid('name')" />
+              </div>
+              @if (isInvalid('name')) {
+                <small class="error-msg">El nombre es obligatorio</small>
+              }
+            </div>
+
+            <!-- Username -->
+            <div class="form-field">
+              <label class="field-label" for="sellerUser">Usuario</label>
+              <div class="input-wrap">
+                <i class="bi bi-shield input-icon"></i>
+                <input type="text" id="sellerUser" class="field-input"
+                  formControlName="username" placeholder="Ej: janesmith"
+                  [class.field-error]="isInvalid('username')" />
+              </div>
+              @if (isInvalid('username')) {
+                <small class="error-msg">El usuario es obligatorio</small>
+              }
+            </div>
+
+            <!-- Password -->
+            <div class="form-field">
+              <label class="field-label" for="sellerPassword">Contraseña</label>
+              <div class="input-wrap">
+                <i class="bi bi-key input-icon"></i>
+                <input [type]="showPassword ? 'text' : 'password'"
+                  id="sellerPassword" class="field-input"
+                  formControlName="password" placeholder="••••••••"
+                  [class.field-error]="isInvalid('password')" />
+                <button type="button" class="toggle-pw"
+                  (click)="showPassword = !showPassword">
+                  <i class="bi"
+                    [class.bi-eye]="!showPassword"
+                    [class.bi-eye-slash]="showPassword"></i>
+                </button>
+              </div>
+              @if (isInvalid('password')) {
+                <small class="error-msg">La contraseña es obligatoria</small>
+              }
+            </div>
+
+            <!-- Error banner -->
+            @if (formError) {
+              <div class="error-banner">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                {{ formError }}
+              </div>
+            }
+
+            <button type="submit" class="submit-btn mt-1">
+              <i class="bi bi-person-plus-fill"></i>
+              Crear Vendedor
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- ── Sellers List (right) ────────────────────────────────────────── -->
+      <div class="col-12 col-lg-7">
+        <div class="panel animate-slide-right">
+
+          <!-- List header -->
+          <div class="list-header">
+            <div>
+              <h2 class="list-title">Vendedores Registrados</h2>
+              <p class="list-count">{{ sellers.length }} vendedor{{ sellers.length !== 1 ? 'es' : '' }}</p>
+            </div>
+          </div>
+
+          <!-- Empty state -->
+          @if (sellers.length === 0) {
+            <div class="empty-state">
+              <div class="empty-icon">
+                <i class="bi bi-people"></i>
+              </div>
+              <p class="empty-title">No hay vendedores registrados</p>
+              <p class="empty-sub">Crea uno usando el formulario</p>
+            </div>
+          } @else {
+            <div class="sellers-list">
+              @for (seller of sellers; track seller.id) {
+                <div class="seller-row animate-fade-up">
+
+                  <!-- Avatar -->
+                  <div class="seller-avatar">{{ getInitials(seller.name) }}</div>
+
+                  <!-- Info -->
+                  <div class="seller-info flex-grow-1">
+                    <p class="seller-name">{{ seller.name }}</p>
+                    <p class="seller-user">@{{ seller.user }}</p>
+                    <div class="seller-pw-row">
+                      <span class="seller-pw">
+                        {{ showPasswords[seller.id] ? seller.password : '••••••••' }}
+                      </span>
+                      <button class="pw-toggle" type="button"
+                        (click)="togglePassword(seller.id)">
+                        <i class="bi"
+                          [class.bi-eye]="!showPasswords[seller.id]"
+                          [class.bi-eye-slash]="showPasswords[seller.id]"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Delete -->
+                  <button class="delete-btn" type="button"
+                    (click)="handleDelete(seller.id)">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+
+                </div>
+              }
+            </div>
+          }
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -108,7 +108,7 @@
    ITEMS SCROLL LIST
    ════════════════════════════════════════════════════════ */
 .items-scroll {
-  max-height: 440px;
+  max-height: 880px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #e0dbd4 transparent;
@@ -322,4 +322,54 @@
 .send-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* ════════════════════════════════════════════════════════
+   STAFF PRICING FIELDS (per-item bill inputs)
+   ════════════════════════════════════════════════════════ */
+.staff-pricing {
+  background: #fdf9f0;
+  border: 1px solid #f0e8d4;
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.field-label-sm {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #DB3438;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.field-input-sm {
+  width: 100%;
+  height: 34px;
+  padding: 0 0.65rem;
+  border-radius: 8px;
+  border: 1.5px solid #e0dbd4;
+  background: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  color: #1a1008;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.field-input-sm:focus {
+  border-color: #fcba2d;
+  box-shadow: 0 0 0 2px rgba(252,186,45,0.18);
+}
+
+.subtotal-preview {
+  font-size: 0.8rem;
+  color: #9b8c7a;
+}
+
+.subtotal-preview strong { color: #DB3438; }
+
+/* ── Summary total highlights ────────────────────────── */
+.total-highlight {
+  color: #DB3438 !important;
+  font-weight: 600;
 }

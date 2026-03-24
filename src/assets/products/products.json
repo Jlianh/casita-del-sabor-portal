@@ -710,22 +710,5 @@
       }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 15 g."
-  },
-  {
-    "id": 38,
-    "imagen": "clavo-molido.jpg",
-    "nombre": "Clavo Molido",
-    "categoria": "Especias",
-    "usos": "Repostería, sopas y guisos.",
-    "ingredientes": "Clavo puro molido.",
-    "codigo_nsa": "NSA-003476-2017",
-    "gramajes": [
-      {
-        "gramos": 10,
-        "unidades": 50,
-        "cod_barras": "7707350880933"
-      }
-    ],
-    "embalaje": "Corrugado de 50 unidades en las presentaciones de x 10 g."
   }
 ]

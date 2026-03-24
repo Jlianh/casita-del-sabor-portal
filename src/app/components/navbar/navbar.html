@@ -1,4 +1,4 @@
-<nav class="navbar-shell sticky-top">
+<nav class="navbar-shell sticky-top " [hidden]="hiddenNavbar">
   <div class="navbar-inner container-fluid px-4 d-flex align-items-center justify-content-between gap-3">
 
     <!-- Logo -->
@@ -40,6 +40,41 @@
       <button class="icon-btn d-flex d-md-none" (click)="toggleMobileSearch()" aria-label="Buscar">
         <i class="bi bi-search"></i>
       </button>
+      
+      @if (authService.isAuthenticated()) {
+      <div class="position-relative">
+        <button class="icon-btn d-none d-md-flex" (click)="toggleUserMenu()" title="Menú usuario" aria-label="Menú usuario">
+          <i class="bi bi-person-circle"></i>
+        </button>
+
+        <!-- User Menu Popup -->
+        @if (isUserMenuOpen) {
+          <div class="user-menu-popup shadow-lg">
+            <div class="user-menu-header d-flex align-items-center justify-content-between mb-3">
+              <h6 class="mb-0 fw-bold">Mi cuenta</h6>
+              <button class="icon-btn-sm" (click)="toggleUserMenu()"><i class="bi bi-x-lg"></i></button>
+            </div>
+
+            <div class="user-menu-items">
+              @if (isAdmin()) {
+              <a routerLink="/admin" class="user-menu-item d-flex align-items-center gap-2 py-2 px-3 text-decoration-none text-dark" (click)="toggleUserMenu()">
+                <i class="bi bi-gear fs-5"></i>
+                <span>Gestionar usuarios</span>
+              </a>
+              }
+              <button class="user-menu-item w-100 text-start d-flex align-items-center gap-2 py-2 px-3 border-0 bg-transparent" (click)="logout()">
+                <i class="bi bi-box-arrow-right fs-5"></i>
+                <span>Cerrar sesión</span>
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+      } @else {
+      <a routerLink="/login" class="icon-btn d-none d-md-flex" title="Acceso vendedores" aria-label="Acceso vendedores">
+        <i class="bi bi-person-circle"></i>
+      </a>
+      }
 
       <!-- Cart Button -->
       <div class="position-relative">

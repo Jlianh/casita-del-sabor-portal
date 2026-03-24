@@ -5,4 +5,6 @@ export interface ProductsCart {
     quantity: number;
     image?: string;
     index ?: number;
+    price?: number;
+    barcode?: string;
 }

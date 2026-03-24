@@ -79,7 +79,8 @@ export class CatalogDetails implements OnInit, OnDestroy {
             gramaje : this.endowmentDetail.gramajes[index].gramos + ' g x ' + this.endowmentDetail.gramajes[index].unidades + ' unidades',
             quantity: this.quantity[index] || 1,
             image   : this.endowmentDetail.imagen,
-            index
+            index,
+            barcode : this.endowmentDetail.gramajes[index].cod_barras,
           };
         }
         return null;

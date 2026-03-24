@@ -8,7 +8,9 @@
         </a>
         }
 
-        <h1 class="page-title">Detalles de la cotización</h1>
+        <h1 class="page-title">
+            @if (authService.isStaff()) { Generar Remisión } @else { Detalles de la cotización }
+        </h1>
         <p class="page-subtitle">A continuación se muestran los productos que has añadido a tu carrito</p>
 
         <!-- Empty cart -->
@@ -22,7 +24,7 @@
 
         <div class="row g-4 mb-4">
 
-            <!-- ── Product List ─────────────────────────────── -->
+            <!-- ── Product List ──────────────────────────────────────────────── -->
             <div class="col-12 col-lg-6">
                 <div class="panel">
                     <div class="items-scroll">
@@ -31,18 +33,77 @@
 
                             <div class="cart-item-info flex-grow-1">
                                 <p class="item-name">{{ item.name }}</p>
-                                <p class="item-gramaje">Gramaje: {{ item.gramaje }} </p>
-                                <div class="d-flex align-items-center gap-2 mt-2">
-                                    <span class="item-qty-label">Cantidad:</span>
-                                    <div class="qty-control">
-                                        <button class="qty-btn" (click)="decrementQuantity(item)">−</button>
-                                        <span class="qty-value">{{ item.quantity }}</span>
-                                        <button class="qty-btn" (click)="incrementQuantity(item)">+</button>
+                                <p class="item-gramaje">Gramaje: {{ item.gramaje }}</p>
+
+                                <div class="d-flex align-items-center justify-content-between gap-2 mt-2">
+                                    <div>
+                                        <span class="item-qty-label">Cantidad:</span>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" (click)="decrementQuantity(item)">−</button>
+                                            <span class="qty-value">{{ item.quantity }}</span>
+                                            <button class="qty-btn" (click)="incrementQuantity(item)">+</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img [src]="'assets/images/' + item.image" [alt]="item.name" class="item-img" />
                                     </div>
                                 </div>
-                            </div>
 
-                            <img [src]="'assets/images/' + item.image" [alt]="item.name" class="item-img" />
+                                <!-- Staff-only pricing fields -->
+                                @if (authService.isStaff()) {
+                                <div class="staff-pricing mt-3" [formGroup]="staffPricingForm">
+                                    <div class="row g-2">
+
+                                        <div class="col-6">
+                                            <label class="field-label-sm">
+                                                Precio unitario <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="number" class="field-input-sm" [formControlName]="'price_' + i"
+                                                min="0" step="1" placeholder="0" />
+                                        </div>
+
+                                        <div class="col-3">
+                                            <label class="field-label-sm">IVA %</label>
+                                            <input type="number" class="field-input-sm" [formControlName]="'iva_' + i"
+                                                min="0" max="100" step="1" placeholder="19" />
+                                        </div>
+
+                                        <div class="col-3">
+                                            <label class="field-label-sm">Desc. %</label>
+                                            <input type="number" class="field-input-sm"
+                                                [formControlName]="'discount_' + i" min="0" max="100" step="0.01"
+                                                placeholder="0" />
+                                        </div>
+
+                                        <div class="col-4">
+                                            <small class="subtotal-preview">
+                                                Subtotal:
+                                                <strong>{{ getItemSubtotal(i) | currency:'COP':'symbol-narrow':'1.0-0'
+                                                    }}</strong>
+                                            </small>
+                                        </div>
+
+                                        <div class="col-4">
+                                            <small class="subtotal-preview">
+                                                IVA:
+                                                <strong>{{ getItemIvaValue(i) | currency:'COP':'symbol-narrow':'1.0-0'
+                                                    }}</strong>
+                                            </small>
+                                        </div>
+
+                                        <div class="col-4">
+                                            <small class="subtotal-preview">
+                                                Descuento:
+                                                <strong>{{ getItemDiscountValue(i) |
+                                                    currency:'COP':'symbol-narrow':'1.0-0'
+                                                    }}</strong>
+                                            </small>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                }
+                            </div>
 
                             <button class="delete-btn" (click)="removeItem(i)">
                                 <i class="bi bi-trash3"></i>
@@ -54,15 +115,18 @@
                 </div>
             </div>
 
-            <!-- ── Client Form ─────────────────────────────── -->
-            <div class="col-12 col-lg-6">
+            <!-- ── Right column ──────────────────────────────────────────────── -->
+            <div class="col-12 col-lg-6 d-flex flex-column gap-4">
+
+                <!-- Client info form -->
                 <div class="panel p-4">
                     <h2 class="panel-title">Información del Cliente</h2>
-                    <p class="required-note">Los campos con <strong class="text-danger">*</strong> son obligatorios</p>
+                    <p class="required-note">
+                        Los campos con <strong class="text-danger">*</strong> son obligatorios
+                    </p>
 
                     <form [formGroup]="clientQuotationForm" class="mt-4 d-flex flex-column gap-3">
 
-                        <!-- Name -->
                         <div class="form-field">
                             <label class="field-label" for="clientName">
                                 Nombre del Cliente <span class="text-danger">*</span>
@@ -74,21 +138,34 @@
                             }
                         </div>
 
-                        <!-- Company -->
                         <div class="form-field">
-                            <label class="field-label" for="clientCompany">Nombre de la empresa</label>
-                            <input type="text" id="clientCompany" class="field-input" formControlName="clientCompany"
-                                placeholder="Nombre de la empresa" />
+                            <label class="field-label" for="clientId">NIT / CC <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" id="clientId" class="field-input" formControlName="clientId"
+                                placeholder="NIT o Cédula" [class.field-error]="isInvalid('clientId')" />
+                            @if (isInvalid('clientId')) {
+                            <small class="error-msg">El NIT/CC es obligatorio</small>
+                            }
                         </div>
 
-                        <!-- Address -->
                         <div class="form-field">
-                            <label class="field-label" for="clientAddress">Dirección del Cliente</label>
+                            <label class="field-label" for="clientAddress">Dirección del Cliente *</label>
                             <input type="text" id="clientAddress" class="field-input" formControlName="clientAddress"
-                                placeholder="Dirección" />
+                                placeholder="Dirección" [class.field-error]="isInvalid('clientAddress')" />
+                            @if (isInvalid('clientAddress')) {
+                            <small class="error-msg">La dirección es obligatoria</small>
+                            }
                         </div>
 
-                        <!-- Email -->
+                        <div class="form-field">
+                            <label class="field-label" for="clientCity">Ciudad del Cliente *</label>
+                            <input type="text" id="clientCity" class="field-input" formControlName="clientCity"
+                                placeholder="Ciudad" [class.field-error]="isInvalid('clientCity')" />
+                            @if (isInvalid('clientCity')) {
+                            <small class="error-msg">La ciudad es obligatoria</small>
+                            }
+                        </div>
+
                         <div class="form-field">
                             <label class="field-label" for="clientEmail">
                                 Correo Electrónico <span class="text-danger">*</span>
@@ -100,7 +177,6 @@
                             }
                         </div>
 
-                        <!-- Phone -->
                         <div class="form-field">
                             <label class="field-label" for="clientPhone">
                                 Teléfono de Contacto <span class="text-danger">*</span>
@@ -111,21 +187,70 @@
                             <small class="error-msg">El teléfono es obligatorio</small>
                             }
                         </div>
-
                     </form>
+                    <!-- Staff-only: retenciones panel -->
+                    @if (authService.isStaff()) {
+                    <div class="my-4">
+                        <h2 class="panel-title">Retenciones</h2>
+                        <p class="required-note">Porcentajes aplicados al total de la operación</p>
+
+                        <form [formGroup]="additionalInfoForm" class="mt-3 d-flex flex-column gap-3">
+
+                            <div class="form-field">
+                                <label class="field-label" for="numeroRemision">Numero de remision</label>
+                                <input type="number" id="numeroRemision" class="field-input"
+                                    formControlName="numeroRemision" min="1" placeholder="0"
+                                    [class.field-error]="additionalInfoisInvalid('numeroRemision')" />
+                                @if (additionalInfoisInvalid('numeroRemision')) {
+                                <small class="error-msg">El número de remisión es obligatorio</small>
+                                }
+                            </div>
+
+                            <div class="form-field">
+                                <label class="field-label" for="reteFuente">Retefuente %</label>
+                                <input type="number" id="reteFuente" class="field-input" formControlName="reteFuente"
+                                    min="0" max="100" step="0.01" placeholder="0" />
+                            </div>
+
+                            <div class="form-field">
+                                <label class="field-label" for="reteica">ReteICA %</label>
+                                <input type="number" id="reteica" class="field-input" formControlName="reteica" min="0"
+                                    max="100" step="0.01" placeholder="0" />
+                            </div>
+
+                        </form>
+                    </div>
+                    }
+
                 </div>
             </div>
         </div>
 
-        <!-- ── Summary Bar ──────────────────────────────── -->
+        <!-- ── Summary Bar ─────────────────────────────────────────────────── -->
         <div class="summary-bar">
             <div class="summary-totals">
                 <p>Total de productos: <strong>{{ cartService.getItems().length }}</strong></p>
                 <p>Total de artículos: <strong>{{ getTotalQuantity() }}</strong></p>
+
+                @if (authService.isStaff()) {
+                <p>Subtotal:
+                    <strong>{{ getBillTotals().subtotal | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+                </p>
+                <p>IVA:
+                    <strong>{{ getBillTotals().totalIva | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+                </p>
+                <p class="total-highlight">Total operación:
+                    <strong>{{ getBillTotals().totalOperation | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+                </p>
+                <p class="total-highlight">Total menos retenciones:
+                    <strong>{{ getBillTotals().totalLessRetentions | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+                </p>
+                }
             </div>
+
             <button class="send-btn" (click)="sendQuotation()" [disabled]="cartService.getItems().length === 0">
                 <i class="bi bi-send"></i>
-                Enviar cotización
+                @if (authService.isStaff()) { Generar factura } @else { Enviar cotización }
             </button>
         </div>
 

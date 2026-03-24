@@ -6,6 +6,7 @@ import { filter, Subscription } from 'rxjs';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { CartService } from '../../services/cart-service';
 import { ProductsService } from '../../services/products-service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +19,9 @@ export class Navbar implements OnInit, OnDestroy {
 
   isCartOpen        = false;
   isMobileSearchOpen = false;
+  isUserMenuOpen    = false;
   disabledCart      = false;
+  hiddenNavbar       = false;
   currentRoute      = '';
   selectedEndowment: any;
   products: any[]   = [];
@@ -28,6 +31,7 @@ export class Navbar implements OnInit, OnDestroy {
   constructor(
     public  cartService    : CartService,
     public  productService : ProductsService,
+    public  authService    : AuthService,
     private router         : Router
   ) {}
 
@@ -39,6 +43,9 @@ export class Navbar implements OnInit, OnDestroy {
       .subscribe((event) => {
         this.currentRoute = (event as NavigationEnd).urlAfterRedirects;
         this.disabledCart = this.currentRoute.includes('quotation');
+        this.isCartOpen = false;
+        this.isUserMenuOpen = false;
+        this.hiddenNavbar = this.currentRoute.includes('login') || this.currentRoute.includes('admin');
         if (this.disabledCart) {
           this.isCartOpen = false;
         }
@@ -53,20 +60,50 @@ export class Navbar implements OnInit, OnDestroy {
     this.router.navigateByUrl('/');
   }
 
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: () => this.router.navigateByUrl('/home'),
+      error: () => this.router.navigateByUrl('/home'),
+    });
+  }
+
+  hasStaffAccess(): boolean {
+    return this.authService.isStaff();
+  }
+
   toggleCart(): void {
     this.isCartOpen = !this.isCartOpen;
-    // Close mobile search when opening cart
-    if (this.isCartOpen) this.isMobileSearchOpen = false;
+    // Close mobile search and user menu when opening cart
+    if (this.isCartOpen) {
+      this.isMobileSearchOpen = false;
+      this.isUserMenuOpen = false;
+    }
   }
 
   toggleMobileSearch(): void {
     this.isMobileSearchOpen = !this.isMobileSearchOpen;
-    // Close cart when opening mobile search
-    if (this.isMobileSearchOpen) this.isCartOpen = false;
+    // Close cart and user menu when opening mobile search
+    if (this.isMobileSearchOpen) {
+      this.isCartOpen = false;
+      this.isUserMenuOpen = false;
+    }
+  }
+
+  toggleUserMenu(): void {
+    this.isUserMenuOpen = !this.isUserMenuOpen;
+    // Close cart and mobile search when opening user menu
+    if (this.isUserMenuOpen) {
+      this.isCartOpen = false;
+      this.isMobileSearchOpen = false;
+    }
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
   }
 
   removeItem(index: number): void {
-    this.cartService.getItems().splice(index, 1);
+    this.cartService.removeItem(index);
   }
 
   getItem(value: any): void {

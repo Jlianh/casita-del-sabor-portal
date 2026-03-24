@@ -1,6 +1,7 @@
 export interface Quotation {
     clientAddress: string; 
-    clientCompany: string;
+    clientId: string;
+    clientCity: string;
     clientEmail: string;
     clientName: string;
     clientPhone: string;
@@ -11,5 +12,6 @@ export interface Quotation {
         grammage: string;
         quantity: number;
         imageName?: string;
+        unitPrice?: number;
     }[];
 }
