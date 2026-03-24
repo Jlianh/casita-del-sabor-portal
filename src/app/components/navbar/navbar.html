@@ -11,18 +11,13 @@
     <div class="search-wrapper d-none d-md-flex flex-grow-1 mx-4" style="max-width: 520px;">
       <div class="search-pill w-100 d-flex align-items-center">
         <div class="flex-grow-1" style="min-width:0;">
-          <ng-autocomplete
-            class="w-100"
-            [data]="products"
-            [searchKeyword]="'nombre'"
-            [itemTemplate]="itemTemplate"
-            placeholder="Buscar productos..."
-            (selected)="getItem($event)"
-            (keydown.enter)="searchEndowment()">
+          <ng-autocomplete class="w-100" [data]="products" [searchKeyword]="'nombre'" [itemTemplate]="itemTemplate"
+            placeholder="Buscar productos..." (selected)="getItem($event)" (keydown.enter)="searchEndowment()">
           </ng-autocomplete>
           <ng-template #itemTemplate let-item>
             <div class="d-flex align-items-center p-2">
-              <img [src]="'assets/images/' + item.imagen" alt="{{ item.nombre }}" width="36" height="36" class="me-2 rounded">
+              <img [src]="'assets/images/' + item.imagen" alt="{{ item.nombre }}" width="36" height="36"
+                class="me-2 rounded">
               <p class="mb-0 small" [innerHTML]="item.nombre"></p>
             </div>
           </ng-template>
@@ -40,34 +35,39 @@
       <button class="icon-btn d-flex d-md-none" (click)="toggleMobileSearch()" aria-label="Buscar">
         <i class="bi bi-search"></i>
       </button>
-      
+
       @if (authService.isAuthenticated()) {
       <div class="position-relative">
-        <button class="icon-btn d-none d-md-flex" (click)="toggleUserMenu()" title="Menú usuario" aria-label="Menú usuario">
+        <button class="icon-btn d-none d-md-flex" (click)="toggleUserMenu()" title="Menú usuario"
+          aria-label="Menú usuario">
           <i class="bi bi-person-circle"></i>
         </button>
 
         <!-- User Menu Popup -->
         @if (isUserMenuOpen) {
-          <div class="user-menu-popup shadow-lg">
-            <div class="user-menu-header d-flex align-items-center justify-content-between mb-3">
-              <h6 class="mb-0 fw-bold">Mi cuenta</h6>
-              <button class="icon-btn-sm" (click)="toggleUserMenu()"><i class="bi bi-x-lg"></i></button>
-            </div>
-
-            <div class="user-menu-items">
-              @if (isAdmin()) {
-              <a routerLink="/admin" class="user-menu-item d-flex align-items-center gap-2 py-2 px-3 text-decoration-none text-dark" (click)="toggleUserMenu()">
-                <i class="bi bi-gear fs-5"></i>
-                <span>Gestionar usuarios</span>
-              </a>
-              }
-              <button class="user-menu-item w-100 text-start d-flex align-items-center gap-2 py-2 px-3 border-0 bg-transparent" (click)="logout()">
-                <i class="bi bi-box-arrow-right fs-5"></i>
-                <span>Cerrar sesión</span>
-              </button>
-            </div>
+        <div class="user-menu-popup shadow-lg">
+          <div class="user-menu-header d-flex align-items-center justify-content-between mb-3">
+            <h6 class="mb-0 fw-bold">Mi cuenta</h6>
+            <button class="icon-btn-sm" (click)="toggleUserMenu()"><i class="bi bi-x-lg"></i></button>
           </div>
+
+          <div class="user-menu-items">
+            @if (isAdmin()) {
+            <a routerLink="/admin"
+              class="user-menu-item d-flex align-items-center gap-2 py-2 px-3 text-decoration-none text-dark"
+              (click)="toggleUserMenu()">
+              <i class="bi bi-gear fs-5"></i>
+              <span>Gestionar usuarios</span>
+            </a>
+            }
+            <button
+              class="user-menu-item w-100 text-start d-flex align-items-center gap-2 py-2 px-3 border-0 bg-transparent"
+              (click)="logout()">
+              <i class="bi bi-box-arrow-right fs-5"></i>
+              <span>Cerrar sesión</span>
+            </button>
+          </div>
+        </div>
         }
       </div>
       } @else {
@@ -81,51 +81,50 @@
         <button class="icon-btn cart-btn" (click)="toggleCart()" [disabled]="disabledCart" aria-label="Carrito">
           <i class="bi bi-bag"></i>
           @if (cartService.getItems().length > 0) {
-            <span class="cart-badge">{{ cartService.getItems().length }}</span>
+          <span class="cart-badge">{{ cartService.getItems().length }}</span>
           }
         </button>
 
         <!-- Cart Popup -->
         @if (isCartOpen) {
-          <div class="cart-popup shadow-lg">
-            <div class="cart-header d-flex align-items-center justify-content-between mb-3">
-              <h6 class="mb-0 fw-bold">Tu carrito</h6>
-              <button class="icon-btn-sm" (click)="toggleCart()"><i class="bi bi-x-lg"></i></button>
-            </div>
+        <div class="cart-popup shadow-lg">
+          <div class="cart-header d-flex align-items-center justify-content-between mb-3">
+            <h6 class="mb-0 fw-bold">Tu carrito</h6>
+            <button class="icon-btn-sm" (click)="toggleCart()"><i class="bi bi-x-lg"></i></button>
+          </div>
 
-            @if (cartService.getItems().length === 0) {
-              <div class="empty-cart text-center py-4">
-                <i class="bi bi-bag fs-2 text-muted"></i>
-                <p class="text-muted mt-2 small">Tu carrito está vacío</p>
+          @if (cartService.getItems().length === 0) {
+          <div class="empty-cart text-center py-4">
+            <i class="bi bi-bag fs-2 text-muted"></i>
+            <p class="text-muted mt-2 small">Tu carrito está vacío</p>
+          </div>
+          } @else {
+          <div class="cart-items">
+            @for (item of cartService.getItems(); track $index) {
+            <div class="cart-item d-flex align-items-center gap-2 py-2">
+              <img [src]="'/assets/images/' + item.image" alt="{{ item.name }}" width="48" height="48"
+                class="rounded-2 object-fit-cover flex-shrink-0">
+              <div class="flex-grow-1 overflow-hidden">
+                <p class="mb-0 fw-semibold small text-truncate">{{ item.name }}</p>
+                <p class="mb-0 text-muted" style="font-size:.75rem;">Cant: {{ item.quantity }} · {{ item.gramaje }}</p>
               </div>
-            } @else {
-              <div class="cart-items">
-                @for (item of cartService.getItems(); track $index) {
-                  <div class="cart-item d-flex align-items-center gap-2 py-2">
-                    <img [src]="'/assets/images/' + item.image" alt="{{ item.name }}" width="48" height="48" class="rounded-2 object-fit-cover flex-shrink-0">
-                    <div class="flex-grow-1 overflow-hidden">
-                      <p class="mb-0 fw-semibold small text-truncate">{{ item.name }}</p>
-                      <p class="mb-0 text-muted" style="font-size:.75rem;">Cant: {{ item.quantity }} · {{ item.gramaje }}</p>
-                    </div>
-                    <button class="icon-btn-sm text-danger" (click)="removeItem($index)">
-                      <i class="bi bi-trash3"></i>
-                    </button>
-                  </div>
-                }
-              </div>
-              <button
-                class="btn-send w-100 mt-3 d-flex align-items-center justify-content-center gap-2"
-                [disabled]="cartService.getItems().length === 0"
-                (click)="sendQuotation()">
-                <i class="bi bi-send"></i> Ir a pedido
+              <button class="icon-btn-sm text-danger" (click)="removeItem($index)">
+                <i class="bi bi-trash3"></i>
               </button>
+            </div>
             }
           </div>
+          <button class="btn-send w-100 mt-3 d-flex align-items-center justify-content-center gap-2"
+            [disabled]="cartService.getItems().length === 0" (click)="sendQuotation()">
+            <i class="bi bi-send"></i> Ir a pedido
+          </button>
+          }
+        </div>
         }
       </div>
 
       <!-- Mobile Menu (optional placeholder) -->
-      <button class="icon-btn d-flex d-md-none" aria-label="Menú">
+      <button class="icon-btn d-flex d-md-none" (click)="toggleMobileMenu()" aria-label="Menú">
         <i class="bi bi-list"></i>
       </button>
     </div>
@@ -133,23 +132,48 @@
 
   <!-- Mobile Search Bar -->
   @if (isMobileSearchOpen) {
-    <div class="mobile-search px-4 pb-3">
-      <div class="search-pill w-100 d-flex align-items-center">
-        <div class="flex-grow-1" style="min-width:0;">
-          <ng-autocomplete
-            class="w-100"
-            [data]="products"
-            [searchKeyword]="'nombre'"
-            [itemTemplate]="itemTemplate"
-            placeholder="Buscar productos..."
-            (selected)="getItem($event)"
-            (keydown.enter)="searchEndowment()">
-          </ng-autocomplete>
-        </div>
-        <button class="search-btn" (click)="searchEndowment()">
-          <i class="bi bi-search"></i>
-        </button>
+  <div class="mobile-search px-4 pb-3">
+    <div class="search-pill w-100 d-flex align-items-center">
+      <div class="flex-grow-1" style="min-width:0;">
+        <ng-autocomplete class="w-100" [data]="products" [searchKeyword]="'nombre'" [itemTemplate]="itemTemplate"
+          placeholder="Buscar productos..." (selected)="getItem($event)" (keydown.enter)="searchEndowment()">
+        </ng-autocomplete>
       </div>
+      <button class="search-btn" (click)="searchEndowment()">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
+  </div>
+  }
+
+  @if (isMobileMenuOpen) {
+  <div class="mobile-menu px-4 py-2">
+
+    <a routerLink="/" class="mobile-item" (click)="toggleMobileMenu()">
+      <i class="bi bi-house-door"></i> Inicio
+    </a>
+    <a routerLink="/catalog" class="mobile-item" (click)="toggleMobileMenu()">
+      <i class="bi bi-grid"></i> Catálogo
+    </a>
+    <a routerLink="/packaging" class="mobile-item" (click)="toggleMobileMenu()">
+      <i class="bi bi-building-gear"></i> Maquilado
+    </a>
+
+    @if (authService.isAuthenticated()) {
+      @if (isAdmin()) {
+        <a routerLink="/admin" class="mobile-item" (click)="toggleMobileMenu()">
+          <i class="bi bi-gear"></i> Gestionar usuarios
+        </a>
+      }
+      <button class="mobile-item text-danger" (click)="logout(); toggleMobileMenu()">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      </button>
+    } @else {
+      <a routerLink="/login" class="mobile-item" (click)="toggleMobileMenu()">
+        <i class="bi bi-person-circle"></i> Iniciar sesión
+      </a>
+    }
+
+  </div>
   }
 </nav>

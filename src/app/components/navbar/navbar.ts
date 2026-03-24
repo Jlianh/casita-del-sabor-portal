@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
@@ -17,23 +17,23 @@ import { AuthService } from '../../services/auth.service';
 })
 export class Navbar implements OnInit, OnDestroy {
 
-  isCartOpen        = false;
+  isCartOpen = false;
   isMobileSearchOpen = false;
-  isUserMenuOpen    = false;
-  disabledCart      = false;
-  hiddenNavbar       = false;
-  currentRoute      = '';
+  isUserMenuOpen = false;
+  disabledCart = false;
+  hiddenNavbar = false;
+  currentRoute = '';
   selectedEndowment: any;
-  products: any[]   = [];
+  products: any[] = [];
 
   private routerSub?: Subscription;
 
   constructor(
-    public  cartService    : CartService,
-    public  productService : ProductsService,
-    public  authService    : AuthService,
-    private router         : Router
-  ) {}
+    public cartService: CartService,
+    public productService: ProductsService,
+    public authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.products.push(...this.productService.GetProducts());
@@ -71,6 +71,19 @@ export class Navbar implements OnInit, OnDestroy {
     return this.authService.isStaff();
   }
 
+  isMobileMenuOpen = false;
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+
+    // cerrar otros menús
+    if (this.isMobileMenuOpen) {
+      this.isCartOpen = false;
+      this.isUserMenuOpen = false;
+      this.isMobileSearchOpen = false;
+    }
+  }
+
   toggleCart(): void {
     this.isCartOpen = !this.isCartOpen;
     // Close mobile search and user menu when opening cart
@@ -102,6 +115,15 @@ export class Navbar implements OnInit, OnDestroy {
     return this.authService.isAdmin();
   }
 
+  /** Close all mobile overlays when the viewport grows past the md breakpoint (768px). */
+  @HostListener('window:resize')
+  onResize(): void {
+    if (window.innerWidth >= 768) {
+      this.isMobileSearchOpen = false;
+      this.isMobileMenuOpen   = false;
+    }
+  }
+
   removeItem(index: number): void {
     this.cartService.removeItem(index);
   }
@@ -113,7 +135,7 @@ export class Navbar implements OnInit, OnDestroy {
   searchEndowment(): void {
     if (this.selectedEndowment?.id) {
       this.router.navigateByUrl('/details/' + this.selectedEndowment.id);
-      this.selectedEndowment  = null;
+      this.selectedEndowment = null;
       this.isMobileSearchOpen = false;
     }
   }

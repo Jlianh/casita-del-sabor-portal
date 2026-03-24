@@ -1,4 +1,127 @@
-footer .container p,
-footer .container a {
-    word-break: break-word;
+/* ════════════════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════════════════ */
+.site-footer {
+  background: #1a1008;
+  font-family: 'Lato', sans-serif;
+  position: relative;
+}
+
+/* Top accent — thin two-tone bar matching the site palette */
+.footer-accent {
+  height: 4px;
+  background: linear-gradient(to right, #DB3438 60%, #fcba2d 100%);
+}
+
+/* ── Brand column ────────────────────────────────────── */
+.footer-logo {
+  height: 56px;
+  width: auto;
+  display: block;
+  filter: brightness(1.05);
+}
+
+.footer-brand-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Section titles ──────────────────────────────────── */
+.footer-section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fcba2d;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.1rem;
+}
+
+/* ── Contact items ───────────────────────────────────── */
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: 0.85rem;
+}
+
+.footer-contact-item:last-child { margin-bottom: 0; }
+
+.footer-contact-icon {
+  color: #DB3438;
+  font-size: 0.9rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.footer-text {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.65;
+  margin: 0;
+  word-break: break-word;
+}
+
+.footer-link {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  line-height: 1.65;
+  word-break: break-word;
+  transition: color 0.18s;
+}
+
+.footer-link:hover { color: #fcba2d; }
+
+/* ── Social button ───────────────────────────────────── */
+.footer-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.social-btn i { font-size: 1rem; }
+
+.social-btn:hover {
+  background: #DB3438;
+  border-color: #DB3438;
+  color: #fff;
+}
+
+/* ── Bottom bar ──────────────────────────────────────── */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 1rem 0;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+  margin: 0;
+  text-align: center;
 }
