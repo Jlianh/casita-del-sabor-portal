@@ -3,107 +3,131 @@
 
     <!-- Not found state -->
     @if (!endowmentDetail) {
-      <div class="not-found">
-        <i class="bi bi-box-seam"></i>
-        <h2>Producto no encontrado</h2>
-        <a routerLink="/catalog" class="back-link mt-3">
-          <i class="bi bi-arrow-left"></i> Volver al catálogo
-        </a>
-      </div>
-    } @else {
-
-      <!-- Back link -->
-      <a routerLink="/catalog" class="back-link mb-4 d-inline-flex">
+    <div class="not-found">
+      <i class="bi bi-box-seam"></i>
+      <h2>Producto no encontrado</h2>
+      <a routerLink="/catalog" class="back-link mt-3">
         <i class="bi bi-arrow-left"></i> Volver al catálogo
       </a>
+    </div>
+    } @else {
 
-      <div class="row g-5 align-items-start">
+    <!-- Back link -->
+    <a routerLink="/catalog" class="back-link mb-4 d-inline-flex">
+      <i class="bi bi-arrow-left"></i> Volver al catálogo
+    </a>
 
-        <!-- ── Image ─────────────────────────────────────── -->
-        <div class="col-12 col-md-5 animate-slide-left">
-          <div class="product-img-card">
-            <img
-              [src]="'assets/images/' + endowmentDetail.imagen"
-              [alt]="endowmentDetail.nombre"
-              class="product-img"
-            />
-          </div>
-        </div>
+    <div class="row g-5 align-items-start">
 
-        <!-- ── Details ───────────────────────────────────── -->
-        <div class="col-12 col-md-7 animate-slide-right">
-
-          <h1 class="product-title">{{ endowmentDetail.nombre }}</h1>
-          <hr class="title-divider">
-
-          <!-- Descripción -->
-          <div class="info-block">
-            <span class="section-badge">Descripción</span>
-            <div class="info-rows mt-3">
-              <p>
-                <span class="info-label">Usos:</span>
-                {{ endowmentDetail.descripcion }}
-              </p>
-              <p>
-                <span class="info-label">Ingredientes:</span>
-                {{ endowmentDetail.ingredientes }}
-              </p>
-              <p>
-                <span class="info-label">Código INVIMA:</span>
-                {{ endowmentDetail.codigo_nsa }}
-              </p>
-            </div>
-          </div>
-
-          <!-- Embalaje -->
-          <div class="info-block">
-            <span class="section-badge">Embalaje</span>
-            <p class="mt-3 mb-0">{{ endowmentDetail.embalaje }}</p>
-          </div>
-
-          <!-- Presentaciones -->
-          <div class="info-block">
-            <span class="section-badge">Presentaciones</span>
-            <div class="presentations mt-3">
-              @for (gramaje of endowmentDetail.gramajes; track $index; let i = $index) {
-                <div class="presentation-row">
-                  <div class="form-check mb-0">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      [id]="'check_' + i"
-                      [checked]="selectedPresentation[i]"
-                      (click)="selectPresentation(i)"
-                    />
-                    <label class="form-check-label" [for]="'check_' + i">
-                      {{ gramaje.gramos }} gramos x {{ gramaje.unidades }} unidades
-                    </label>
-                  </div>
-
-                  <div class="qty-control" [class.qty-visible]="selectedPresentation[i]">
-                    <button class="qty-btn" (click)="decrementQuantity(i); $event.stopPropagation()">−</button>
-                    <input
-                      type="number"
-                      class="qty-input"
-                      [value]="quantity[i] || 1"
-                      inputmode="numeric"
-                      (change)="changeQuantity($event, i)"
-                    />
-                    <button class="qty-btn" (click)="incrementQuantity(i); $event.stopPropagation()">+</button>
-                  </div>
-                </div>
-              }
-            </div>
-          </div>
-
-          <!-- Add to cart -->
-          <button class="add-cart-btn" (click)="addToCart()">
-            <i class="bi bi-cart-plus"></i>
-            Añadir al Carrito
-          </button>
-
+      <!-- ── Image ─────────────────────────────────────── -->
+      <div class="col-12 col-md-5 animate-slide-left">
+        <div class="product-img-card">
+          <img [src]="'assets/images/' + endowmentDetail.imagen" [alt]="endowmentDetail.nombre" class="product-img" />
         </div>
       </div>
+
+      <!-- ── Details ───────────────────────────────────── -->
+      <div class="col-12 col-md-7 animate-slide-right">
+
+        <h1 class="product-title">{{ endowmentDetail.nombre }}</h1>
+        <hr class="title-divider">
+
+        <!-- Descripción -->
+        <div class="info-block">
+          <span class="section-badge">Descripción</span>
+          <div class="info-rows mt-3">
+            <p>
+              <span class="info-label">Usos:</span>
+              {{ endowmentDetail.descripcion }}
+            </p>
+            <p>
+              <span class="info-label">Ingredientes:</span>
+              {{ endowmentDetail.ingredientes }}
+            </p>
+            <p>
+              <span class="info-label">Código INVIMA:</span>
+              {{ endowmentDetail.codigo_nsa }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Embalaje -->
+        <div class="info-block">
+          <span class="section-badge">Embalaje</span>
+          <p class="mt-3 mb-0">{{ endowmentDetail.embalaje }}</p>
+        </div>
+
+        <!-- Presentaciones -->
+        <div class="info-block">
+          <span class="section-badge">Presentaciones</span>
+          <div class="presentations mt-3">
+            @for (gramaje of endowmentDetail.gramajes; track $index; let i = $index) {
+            <div class="presentation-row">
+              <div class="form-check mb-0">
+                <input type="checkbox" class="form-check-input" [id]="'check_' + i" [checked]="selectedPresentation[i]"
+                  (click)="selectPresentation(i)" />
+                <label class="form-check-label" [for]="'check_' + i">
+                  {{ gramaje.gramos }} gramos x {{gramaje.unidades}} unidades
+                </label>
+              </div>
+
+              <div class="qty-control" [class.qty-visible]="selectedPresentation[i]">
+                <button class="qty-btn" (click)="decrementQuantity(i); $event.stopPropagation()">−</button>
+                <input type="number" class="qty-input" [value]="quantity[i] || 1" inputmode="numeric"
+                  (change)="changeQuantity($event, i)" />
+                <button class="qty-btn" (click)="incrementQuantity(i); $event.stopPropagation()">+</button>
+              </div>
+            </div>
+            }
+            <!-- Personalizado -->
+            <div class="presentation-row">
+              <div class="form-check mb-0">
+                <input type="checkbox" class="form-check-input" id="custom_check" [(ngModel)]="customSelected" />
+                <label class="form-check-label" [for]="'custom_check'">
+                  Personalizado
+                </label>
+              </div>
+
+              <div class="qty-control custom-control" [class.qty-visible]="customSelected">
+
+                <div class="custom-field">
+                  <label class="custom-label">Gramos</label>
+                  <input type="number" class="qty-input custom-number" min="1"
+                    [(ngModel)]="customGrams" />
+                </div>
+
+                <span class="custom-sep">×</span>
+
+                <div class="custom-field">
+                  <label class="custom-label">Unidades</label>
+                  <input type="number" class="qty-input custom-number" min="1"
+                    [(ngModel)]="customUnits" />
+                </div>
+
+                <span class="custom-sep">·</span>
+
+                <div class="custom-field">
+                  <label class="custom-label">Cantidad</label>
+                  <div class="d-flex custom-counter">
+                    <button class="qty-btn" (click)="decrementCustom(); $event.stopPropagation()">−</button>
+                    <input type="number" class="qty-input" min="1" [(ngModel)]="customQuantity" />
+                    <button class="qty-btn" (click)="incrementCustom(); $event.stopPropagation()">+</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add to cart -->
+        <button class="add-cart-btn" (click)="addToCart()">
+          <i class="bi bi-cart-plus"></i>
+          Añadir al Carrito
+        </button>
+
+      </div>
+    </div>
     }
   </div>
 </div>

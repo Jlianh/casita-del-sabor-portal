@@ -1,7 +1,7 @@
 export interface Quotation {
     clientAddress: string; 
     clientId: string;
-    clientCity: string;
+    clientCity: any;
     clientEmail: string;
     clientName: string;
     clientPhone: string;

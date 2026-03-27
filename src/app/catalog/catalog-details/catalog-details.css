@@ -260,3 +260,51 @@
   from { opacity: 0; transform: translateX(30px); }
   to   { opacity: 1; transform: translateX(0);    }
 }
+
+.custom-control {
+  /* Override max-width from qty-control — custom needs more room */
+  max-width: 360px !important;
+  height: auto !important;
+  border-radius: 10px !important;
+  padding: 0.5rem 0.6rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  overflow: visible !important;
+}
+
+.custom-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.custom-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #9b8c7a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.custom-number {
+  width: 70px !important;
+  border: 2px solid #e0dbd4;
+  border-radius: 10px;
+}
+
+.custom-counter{
+  border: 2px solid #e0dbd4;
+  border-radius: 10px;
+}
+
+.custom-counter > .qty-btn{
+  border-radius: 10px;
+}
+
+.custom-sep {
+  font-size: 1rem;
+  color: #b0a898;
+  align-self: flex-end;
+  padding-bottom: 4px;
+}

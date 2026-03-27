@@ -34,7 +34,7 @@ export class CartService {
   }
 
   addItem(item: ProductsCart): void {
-    const checkedItems = this.items.filter(i => i.id === item.id && i.index === item.index);
+    const checkedItems = this.items.filter(i => i.id === item.id && i.index === item.index && i.gramaje === item.gramaje);
 
     if (checkedItems.length > 0) {
       checkedItems[0].quantity += item.quantity;

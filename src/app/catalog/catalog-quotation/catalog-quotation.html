@@ -30,45 +30,43 @@
                     <div class="items-scroll">
                         @for (item of cartService.getItems(); track $index; let i = $index) {
                         <div class="cart-item">
-
                             <div class="cart-item-info flex-grow-1">
-                                <p class="item-name">{{ item.name }}</p>
-                                <p class="item-gramaje">Gramaje: {{ item.gramaje }}</p>
+                                <div class="d-flex justify-content-between">
+                                    <div class="p-2">
+                                        <p class="item-name">{{ item.name }}</p>
+                                        <p class="item-gramaje">Gramaje: {{ item.gramaje }}</p>
 
-                                <div class="d-flex align-items-center justify-content-between gap-2 mt-2">
-                                    <div>
-                                        <span class="item-qty-label">Cantidad:</span>
-                                        <div class="qty-control">
-                                            <button class="qty-btn" (click)="decrementQuantity(item)">−</button>
-                                            <span class="qty-value">{{ item.quantity }}</span>
-                                            <button class="qty-btn" (click)="incrementQuantity(item)">+</button>
+                                        <div class="d-flex align-items-center justify-content-between gap-2 mt-2">
+                                            <div class="d-flex flex-row align-items-center gap-2">
+                                                <span class="item-qty-label">Cantidad:</span>
+                                                <div class="qty-control">
+                                                    <button class="qty-btn" (click)="decrementQuantity(item)">−</button>
+                                                    <span class="qty-value">{{ item.quantity }}</span>
+                                                    <button class="qty-btn" (click)="incrementQuantity(item)">+</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="d-flex flex-row align-items-center gap-2 p-2">
                                         <img [src]="'assets/images/' + item.image" [alt]="item.name" class="item-img" />
+                                        <button class="delete-btn" (click)="removeItem(i)">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
                                     </div>
                                 </div>
-
                                 <!-- Staff-only pricing fields -->
                                 @if (authService.isStaff()) {
                                 <div class="staff-pricing mt-3" [formGroup]="staffPricingForm">
                                     <div class="row g-2">
 
-                                        <div class="col-6">
+                                        <div class="col-8">
                                             <label class="field-label-sm">
                                                 Precio unitario <span class="text-danger">*</span>
                                             </label>
                                             <input type="number" class="field-input-sm" [formControlName]="'price_' + i"
                                                 min="0" step="1" placeholder="0" />
                                         </div>
-
-                                        <div class="col-3">
-                                            <label class="field-label-sm">IVA %</label>
-                                            <input type="number" class="field-input-sm" [formControlName]="'iva_' + i"
-                                                min="0" max="100" step="1" placeholder="19" />
-                                        </div>
-
-                                        <div class="col-3">
+                                        <div class="col-4">
                                             <label class="field-label-sm">Desc. %</label>
                                             <input type="number" class="field-input-sm"
                                                 [formControlName]="'discount_' + i" min="0" max="100" step="0.01"
@@ -104,11 +102,6 @@
                                 </div>
                                 }
                             </div>
-
-                            <button class="delete-btn" (click)="removeItem(i)">
-                                <i class="bi bi-trash3"></i>
-                            </button>
-
                         </div>
                         }
                     </div>
@@ -148,21 +141,100 @@
                             }
                         </div>
 
+                        <div class="row g-3" [formGroup]="locationForm">
+
+                            <!-- ── Departamento ─────────────────────────────────────── -->
+                            <div class="form-field col-12 col-md-6" style="position:relative;">
+                                <label class="field-label" for="deptInput">
+                                    Departamento <span class="text-danger">*</span>
+                                </label>
+
+                                <div class="autocomplete-wrap" [class.focused]="deptFocused"
+                                    [class.field-error]="isInvalidLoc('clientDepartamento')">
+                                    <i class="bi bi-map ac-icon"></i>
+                                    <input #deptInput id="deptInput" type="text" class="ac-input"
+                                        placeholder="Buscar departamento..." autocomplete="off" [value]="deptQuery"
+                                        (input)="onDeptInput($event)" (focus)="deptFocused = true" (blur)="onDeptBlur()"
+                                        (keydown)="onDeptKey($event)" />
+                                    @if (deptQuery) {
+                                    <button class="ac-clear" type="button" (click)="clearDept()">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                    }
+                                </div>
+
+                                @if (isInvalidLoc('clientDepartamento')) {
+                                <small class="error-msg">El departamento es obligatorio</small>
+                                }
+
+                                <!-- Dropdown -->
+                                @if (deptFocused && filteredDepts.length > 0) {
+                                <ul class="ac-dropdown" role="listbox">
+                                    @for (dept of filteredDepts; track dept.id; let i = $index) {
+                                    <li class="ac-option" [class.ac-active]="i === deptActiveIdx" role="option"
+                                        (mousedown)="selectDept(dept)">
+                                        {{ dept.departamento }}
+                                    </li>
+                                    }
+                                </ul>
+                                }
+
+                                @if (deptFocused && deptQuery && filteredDepts.length === 0) {
+                                <div class="ac-empty">Sin resultados para "{{ deptQuery }}"</div>
+                                }
+                            </div>
+
+                            <!-- ── Ciudad ───────────────────────────────────────────── -->
+                            <div class="form-field col-12 col-md-6" style="position:relative;">
+                                <label class="field-label" for="cityInput">
+                                    Ciudad <span class="text-danger">*</span>
+                                </label>
+
+                                <div class="autocomplete-wrap" [class.focused]="cityFocused"
+                                    [class.field-error]="isInvalidLoc('clientCiudad')"
+                                    [class.ac-disabled]="!selectedDept">
+                                    <i class="bi bi-geo-alt ac-icon"></i>
+                                    <input #cityInput id="cityInput" type="text" class="ac-input"
+                                        [placeholder]="selectedDept ? 'Buscar ciudad...' : 'Primero elige un departamento'"
+                                        autocomplete="off" [disabled]="!selectedDept" [value]="cityQuery"
+                                        (input)="onCityInput($event)" (focus)="cityFocused = true" (blur)="onCityBlur()"
+                                        (keydown)="onCityKey($event)" />
+                                    @if (cityQuery) {
+                                    <button class="ac-clear" type="button" (click)="clearCity()">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                    }
+                                </div>
+
+                                @if (isInvalidLoc('clientCiudad')) {
+                                <small class="error-msg">La ciudad es obligatoria</small>
+                                }
+
+                                <!-- Dropdown -->
+                                @if (cityFocused && filteredCities.length > 0) {
+                                <ul class="ac-dropdown" role="listbox">
+                                    @for (city of filteredCities; track city; let i = $index) {
+                                    <li class="ac-option" [class.ac-active]="i === cityActiveIdx" role="option"
+                                        (mousedown)="selectCity(city)">
+                                        {{ city }}
+                                    </li>
+                                    }
+                                </ul>
+                                }
+
+                                @if (cityFocused && cityQuery && filteredCities.length === 0) {
+                                <div class="ac-empty">Sin resultados para "{{ cityQuery }}"</div>
+                                }
+                            </div>
+
+                        </div>
+
                         <div class="form-field">
                             <label class="field-label" for="clientAddress">Dirección del Cliente *</label>
                             <input type="text" id="clientAddress" class="field-input" formControlName="clientAddress"
                                 placeholder="Dirección" [class.field-error]="isInvalid('clientAddress')" />
                             @if (isInvalid('clientAddress')) {
                             <small class="error-msg">La dirección es obligatoria</small>
-                            }
-                        </div>
-
-                        <div class="form-field">
-                            <label class="field-label" for="clientCity">Ciudad del Cliente *</label>
-                            <input type="text" id="clientCity" class="field-input" formControlName="clientCity"
-                                placeholder="Ciudad" [class.field-error]="isInvalid('clientCity')" />
-                            @if (isInvalid('clientCity')) {
-                            <small class="error-msg">La ciudad es obligatoria</small>
                             }
                         </div>
 
@@ -191,13 +263,13 @@
                     <!-- Staff-only: retenciones panel -->
                     @if (authService.isStaff()) {
                     <div class="my-4">
-                        <h2 class="panel-title">Retenciones</h2>
-                        <p class="required-note">Porcentajes aplicados al total de la operación</p>
+                        <h2 class="panel-title">Informacion de Remision</h2>
+                        <p class="required-note">Ingresa aqui la informacion de la remision</p>
 
                         <form [formGroup]="additionalInfoForm" class="mt-3 d-flex flex-column gap-3">
 
                             <div class="form-field">
-                                <label class="field-label" for="numeroRemision">Numero de remision</label>
+                                <label class="field-label" for="numeroRemision">Numero de remision *</label>
                                 <input type="number" id="numeroRemision" class="field-input"
                                     formControlName="numeroRemision" min="1" placeholder="0"
                                     [class.field-error]="additionalInfoisInvalid('numeroRemision')" />
@@ -205,19 +277,39 @@
                                 <small class="error-msg">El número de remisión es obligatorio</small>
                                 }
                             </div>
-
                             <div class="form-field">
-                                <label class="field-label" for="reteFuente">Retefuente %</label>
-                                <input type="number" id="reteFuente" class="field-input" formControlName="reteFuente"
-                                    min="0" max="100" step="0.01" placeholder="0" />
+                                <label class="field-label" for="numeroReciboCaja">Numero de recibo de caja *</label>
+                                <input type="number" id="numeroReciboCaja" class="field-input"
+                                    formControlName="numeroReciboCaja" min="1" placeholder="0"
+                                    [class.field-error]="additionalInfoisInvalid('numeroReciboCaja')" />
+                                @if (additionalInfoisInvalid('numeroReciboCaja')) {
+                                <small class="error-msg">El número de recibo de caja es obligatorio</small>
+                                }
                             </div>
-
                             <div class="form-field">
-                                <label class="field-label" for="reteica">ReteICA %</label>
-                                <input type="number" id="reteica" class="field-input" formControlName="reteica" min="0"
-                                    max="100" step="0.01" placeholder="0" />
-                            </div>
+                                <label class="field-label">Forma de pago *</label>
+                                <div class="radio-group">
+                                    <div class="radio-pill">
+                                        <input type="radio" name="formaPago" id="payCredit" value="credito"
+                                            formControlName="formaPago" />
+                                        <label for="payCredit">Crédito</label>
+                                    </div>
 
+                                    <div class="radio-pill">
+                                        <input type="radio" name="formaPago" id="payCash" value="contado"
+                                            formControlName="formaPago" />
+                                        <label for="payCash">Contado</label>
+                                    </div>
+                                </div>
+                                @if (additionalInfoisInvalid('formaPago')) {
+                                <small class="error-msg">La forma de pago es obligatoria</small>
+                                }
+                            </div>
+                            <div class="form-field">
+                                <label class="field-label" for="descuentoComercial">Descuento comercial</label>
+                                <input type="number" id="descuentoComercial" class="field-input"
+                                    formControlName="descuentoComercial" min="1" placeholder="0" />
+                            </div>
                         </form>
                     </div>
                     }
@@ -239,18 +331,18 @@
                 <p>IVA:
                     <strong>{{ getBillTotals().totalIva | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
                 </p>
+                <p>Descuentos:
+                    <strong>{{ getBillTotals().discount| currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
+                </p>
                 <p class="total-highlight">Total operación:
                     <strong>{{ getBillTotals().totalOperation | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
-                </p>
-                <p class="total-highlight">Total menos retenciones:
-                    <strong>{{ getBillTotals().totalLessRetentions | currency:'COP':'symbol-narrow':'1.0-0' }}</strong>
                 </p>
                 }
             </div>
 
             <button class="send-btn" (click)="sendQuotation()" [disabled]="cartService.getItems().length === 0">
                 <i class="bi bi-send"></i>
-                @if (authService.isStaff()) { Generar factura } @else { Enviar cotización }
+                @if (authService.isStaff()) { Generar remision } @else { Enviar cotización }
             </button>
         </div>
 

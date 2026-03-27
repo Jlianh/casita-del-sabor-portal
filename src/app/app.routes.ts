@@ -7,6 +7,7 @@ import { Packaging } from './catalog/packaging/packaging';
 import { Login } from './login/login';
 import { StaffGuard } from './services/staff.guard';
 import { AdminUsers } from './admin/admin';
+import { Institutional } from './catalog/institutional/institutional';
 
 export const routes: Routes = [
     { path: 'details/:id', component: CatalogDetails},
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { path: 'catalog', component:Catalog},
     { path: 'home', component:Home},
     { path: 'packaging', component:Packaging},
+    { path: 'institutional', component:Institutional},
     { path: 'login', component:Login},
     { path: 'admin', component:AdminUsers, canActivate: [StaffGuard] },
     { path: '', redirectTo: 'home', pathMatch: 'full'},
