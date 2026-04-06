@@ -135,8 +135,7 @@ export class AuthService {
         return this.http.post(`${this.apiUrl}/sendRestoreEmail`, { email });
     }
 
-    resetPassword(user: string, password: string) {
-        console.log('Resetting password for user:', user, 'with new password:', password);
-        return this.http.post(`${this.apiUrl}/restore`, { user, password });
+    resetPassword(email: string, password: string) {
+        return this.http.post(`${this.apiUrl}/restore`, { email, password });
     }
 }

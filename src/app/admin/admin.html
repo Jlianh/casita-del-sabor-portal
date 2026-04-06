@@ -62,6 +62,19 @@
               <small class="error-msg">El usuario es obligatorio</small>
               }
             </div>
+            
+            <!-- Email -->
+            <div class="form-field">
+              <label class="field-label" for="sellerEmail">Email</label>
+              <div class="input-wrap">
+                <i class="bi bi-shield input-icon"></i>
+                <input type="text" id="sellerEmail" class="field-input" formControlName="email"
+                  placeholder="Ej: janesmith" [class.field-error]="isInvalid('email')" />
+              </div>
+              @if (isInvalid('email')) {
+              <small class="error-msg">El email es obligatorio</small>
+              }
+            </div>
 
             <!-- Password -->
             <div class="form-field">
@@ -138,7 +151,8 @@
               <!-- Info -->
               <div class="seller-info flex-grow-1">
                 <p class="seller-name">{{ seller.name }}</p>
-                <p class="seller-user">@{{ seller.user }}</p>
+                <p class="seller-user">{{ seller.user }}</p>
+                <p class="seller-user">{{ seller.email }}</p>
               </div>
 
               <!-- Delete -->

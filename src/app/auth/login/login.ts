@@ -22,7 +22,7 @@ export class Login {
 
   // ── Login form ───────────────────────────────────────────
   loginForm = new FormGroup({
-    user   : new FormControl('', [Validators.required, Validators.email]),
+    user   : new FormControl('', [Validators.required]),
     password: new FormControl('', Validators.required),
   });
 
@@ -51,8 +51,8 @@ export class Login {
         this.errorMessage = '';
         this.router.navigateByUrl('/catalog');
       },
-      error: (error) => {
-        this.errorMessage = error?.error?.message || 'Error al iniciar sesión. Revisa credenciales.';
+      error: () => {
+        alert('Error al iniciar sesión - revisa tus credenciales e intenta de nuevo.');
       }
     });
   }

@@ -42,7 +42,7 @@ export class RestorePassword implements OnInit {
   showNew     = false;
   showConfirm = false;
 
-  user: string = '';
+  email: string = '';
 
   readonly passwordRules = PASSWORD_RULES;
 
@@ -59,7 +59,7 @@ export class RestorePassword implements OnInit {
   ngOnInit(): void {
     this.authService.getUserById(this.activatedRoute.snapshot.params['id']).subscribe({
        next: (data: any) => {
-         this.user = data.user;
+         this.email = data.email;
        }
     });
   }
@@ -85,7 +85,7 @@ export class RestorePassword implements OnInit {
     this.resetForm.markAllAsTouched();
     if (!this.allRulesPassed || !this.passwordsMatch) return;
 
-    this.authService.resetPassword(this.user, this.resetForm.get('newPassword')?.value ?? '').subscribe({
+    this.authService.resetPassword(this.email, this.resetForm.get('newPassword')?.value ?? '').subscribe({
       next: () => {
         alert('Contraseña restablecida exitosamente.');
         this.router.navigateByUrl('/auth/login');

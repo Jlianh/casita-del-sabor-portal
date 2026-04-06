@@ -8,6 +8,7 @@ interface Seller {
   id: string;
   name: string;
   user: string;
+  email: string;
   password: string;
   roles: string[];
 }
@@ -58,6 +59,7 @@ export class AdminUsers implements OnInit {
   sellerForm = new FormGroup({
     name: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
   });
 
@@ -115,7 +117,7 @@ export class AdminUsers implements OnInit {
 
     if (!this.sellerForm.valid) return;
 
-    const { name, username, password } = this.sellerForm.value;
+    const { name, username, email, password } = this.sellerForm.value;
 
     // Duplicate username check
     if (this.sellers.some(s => s.user === username!.trim())) {
@@ -127,6 +129,7 @@ export class AdminUsers implements OnInit {
       id: crypto.randomUUID(),
       name: name!.trim(),
       user: username!.trim(),
+      email: email!.trim(),
       password: password!.trim(),
       roles: ['vendedor']
     };
