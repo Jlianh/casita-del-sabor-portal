@@ -45,7 +45,7 @@ export class Navbar implements OnInit, OnDestroy {
         this.disabledCart = this.currentRoute.includes('quotation');
         this.isCartOpen = false;
         this.isUserMenuOpen = false;
-        this.hiddenNavbar = this.currentRoute.includes('login') || this.currentRoute.includes('admin');
+        this.hiddenNavbar = this.currentRoute.includes('auth/login') || this.currentRoute.includes('auth/restore') || this.currentRoute.includes('admin');
         if (this.disabledCart) {
           this.isCartOpen = false;
         }

@@ -4,10 +4,11 @@ import { CatalogQuotation } from './catalog/catalog-quotation/catalog-quotation'
 import { Catalog } from './catalog/catalog-home/catalog';
 import { Home } from './catalog/home';
 import { Packaging } from './catalog/packaging/packaging';
-import { Login } from './login/login';
+import { Login } from './auth/login/login';
 import { StaffGuard } from './services/staff.guard';
 import { AdminUsers } from './admin/admin';
 import { Institutional } from './catalog/institutional/institutional';
+import { RestorePassword } from './auth/restore-password/restore-password';
 
 export const routes: Routes = [
     { path: 'details/:id', component: CatalogDetails},
@@ -17,7 +18,8 @@ export const routes: Routes = [
     { path: 'home', component:Home},
     { path: 'packaging', component:Packaging},
     { path: 'institutional', component:Institutional},
-    { path: 'login', component:Login},
+    { path: 'auth/login', component:Login},
+    { path: 'auth/restore/:id', component:RestorePassword},
     { path: 'admin', component:AdminUsers, canActivate: [StaffGuard] },
     { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];

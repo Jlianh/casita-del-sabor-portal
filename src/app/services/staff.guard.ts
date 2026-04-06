@@ -10,6 +10,6 @@ export class StaffGuard implements CanActivate {
     if (this.authService.isStaff()) {
       return true;
     }
-    return this.router.createUrlTree(['/login']);
+    return this.router.createUrlTree(['/auth/login']);
   }
 }

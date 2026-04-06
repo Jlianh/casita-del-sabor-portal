@@ -17,9 +17,9 @@ export class AuthService {
     private currentUserSubject = new BehaviorSubject<AppUser | null>(null);
     public currentUser$ = this.currentUserSubject.asObservable();
 
-    // private apiUrl = 'http://localhost:3000/api/auth';
+    private apiUrl = 'http://localhost:3000/api/auth';
 
-    private apiUrl = 'https://casita-del-sabor-email-service.vercel.app/api/auth';
+    // private apiUrl = 'https://casita-del-sabor-email-service.vercel.app/api/auth';
 
     constructor(private loginService: LoginService, private http: HttpClient) {
         const cached = localStorage.getItem('currentUser');
@@ -125,5 +125,18 @@ export class AuthService {
         return this.http.get(`${this.apiUrl}/users`, {
             withCredentials: true
         });
+    }
+
+    getUserById(id: any) {
+        return this.http.get(`${this.apiUrl}/users/${id}`);
+    }
+
+    sendRestoreEmail(email: string){
+        return this.http.post(`${this.apiUrl}/sendRestoreEmail`, { email });
+    }
+
+    resetPassword(user: string, password: string) {
+        console.log('Resetting password for user:', user, 'with new password:', password);
+        return this.http.post(`${this.apiUrl}/restore`, { user, password });
     }
 }

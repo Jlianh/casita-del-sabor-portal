@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 
 interface Seller {
@@ -11,6 +11,31 @@ interface Seller {
   password: string;
   roles: string[];
 }
+
+// ── Password rules — each has a label and a test fn ──────────────────────────
+interface PasswordRule { label: string; test: (p: string) => boolean; }
+
+const PASSWORD_RULES: PasswordRule[] = [
+  { label: 'Mínimo 8 caracteres',           test: p => p.length >= 8              },
+  { label: 'Al menos 1 mayúscula',           test: p => /[A-Z]/.test(p)           },
+  { label: 'Al menos 1 minúscula',           test: p => /[a-z]/.test(p)           },
+  { label: 'Al menos 1 número',              test: p => /[0-9]/.test(p)           },
+  { label: 'Al menos 1 símbolo (!@#$...)',   test: p => /[^A-Za-z0-9]/.test(p)   },
+];
+
+// ── Custom validator: all rules must pass ────────────────────────────────────
+const passwordStrengthValidator: ValidatorFn = (ctrl: AbstractControl): ValidationErrors | null => {
+  const value: string = ctrl.value ?? '';
+  const failed = PASSWORD_RULES.some(r => !r.test(value));
+  return failed ? { weakPassword: true } : null;
+};
+
+// ── Custom validator: passwords must match ───────────────────────────────────
+const passwordMatchValidator: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
+  const a = group.get('newPassword')?.value ?? '';
+  const b = group.get('confirmPassword')?.value ?? '';
+  return a && b && a !== b ? { mismatch: true } : null;
+};
 
 @Component({
   selector: 'app-admin-users',
@@ -28,6 +53,8 @@ export class AdminUsers implements OnInit {
 
   formError = '';
 
+  readonly passwordRules = PASSWORD_RULES;
+
   sellerForm = new FormGroup({
     name: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
@@ -38,6 +65,23 @@ export class AdminUsers implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
+  }
+
+  // ── Live rule results for the checklist UI ────────────────────────────────
+  get ruleResults(): boolean[] {
+    const val: string = this.sellerForm.get('password')?.value ?? '';
+    return this.passwordRules.map(r => r.test(val));
+  }
+
+  get allRulesPassed(): boolean { return this.ruleResults.every(Boolean); }
+
+  get confirmValue(): string  { return this.sellerForm.get('confirmPassword')?.value ?? ''; }
+  get confirmTouched(): boolean { return !!this.sellerForm.get('confirmPassword')?.touched; }
+
+  get passwordsMatch(): boolean {
+    const a = this.sellerForm.get('newPassword')?.value ?? '';
+    const b = this.confirmValue;
+    return a.length > 0 && b.length > 0 && a === b;
   }
 
   isInvalid(field: string): boolean {

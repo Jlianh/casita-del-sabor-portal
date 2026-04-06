@@ -414,3 +414,47 @@
   from { opacity: 0; transform: translateX(20px); }
   to   { opacity: 1; transform: translateX(0);    }
 }
+
+/* ── Password match message ──────────────────────────────*/
+.match-msg {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2e7d32;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* ════════════════════════════════════════════════════════
+   PASSWORD RULES CHECKLIST
+   ════════════════════════════════════════════════════════ */
+.pw-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.1rem 0;
+}
+
+.pw-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: #b0a898;
+  transition: color 0.2s;
+}
+
+.pw-rule i {
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  color: #ced4da;
+  transition: color 0.2s;
+}
+
+.pw-rule.pw-rule-ok {
+  color: #2e7d32;
+}
+
+.pw-rule.pw-rule-ok i {
+  color: #2e7d32;
+}

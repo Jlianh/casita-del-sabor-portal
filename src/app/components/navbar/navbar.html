@@ -71,7 +71,7 @@
         }
       </div>
       } @else {
-      <a routerLink="/login" class="icon-btn d-none d-md-flex" title="Acceso vendedores" aria-label="Acceso vendedores">
+      <a routerLink="/auth/login" class="icon-btn d-none d-md-flex" title="Acceso vendedores" aria-label="Acceso vendedores">
         <i class="bi bi-person-circle"></i>
       </a>
       }
@@ -169,7 +169,7 @@
         <i class="bi bi-box-arrow-right"></i> Cerrar sesión
       </button>
     } @else {
-      <a routerLink="/login" class="mobile-item" (click)="toggleMobileMenu()">
+      <a routerLink="/auth/login" class="mobile-item" (click)="toggleMobileMenu()">
         <i class="bi bi-person-circle"></i> Iniciar sesión
       </a>
     }

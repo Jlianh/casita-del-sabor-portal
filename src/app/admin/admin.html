@@ -42,12 +42,11 @@
               <label class="field-label" for="sellerName">Nombre completo</label>
               <div class="input-wrap">
                 <i class="bi bi-person input-icon"></i>
-                <input type="text" id="sellerName" class="field-input"
-                  formControlName="name" placeholder="Ej: Jane Smith"
-                  [class.field-error]="isInvalid('name')" />
+                <input type="text" id="sellerName" class="field-input" formControlName="name"
+                  placeholder="Ej: Jane Smith" [class.field-error]="isInvalid('name')" />
               </div>
               @if (isInvalid('name')) {
-                <small class="error-msg">El nombre es obligatorio</small>
+              <small class="error-msg">El nombre es obligatorio</small>
               }
             </div>
 
@@ -56,12 +55,11 @@
               <label class="field-label" for="sellerUser">Usuario</label>
               <div class="input-wrap">
                 <i class="bi bi-shield input-icon"></i>
-                <input type="text" id="sellerUser" class="field-input"
-                  formControlName="username" placeholder="Ej: janesmith"
-                  [class.field-error]="isInvalid('username')" />
+                <input type="text" id="sellerUser" class="field-input" formControlName="username"
+                  placeholder="Ej: janesmith" [class.field-error]="isInvalid('username')" />
               </div>
               @if (isInvalid('username')) {
-                <small class="error-msg">El usuario es obligatorio</small>
+              <small class="error-msg">El usuario es obligatorio</small>
               }
             </div>
 
@@ -70,28 +68,33 @@
               <label class="field-label" for="sellerPassword">Contraseña</label>
               <div class="input-wrap">
                 <i class="bi bi-key input-icon"></i>
-                <input [type]="showPassword ? 'text' : 'password'"
-                  id="sellerPassword" class="field-input"
-                  formControlName="password" placeholder="••••••••"
-                  [class.field-error]="isInvalid('password')" />
-                <button type="button" class="toggle-pw"
-                  (click)="showPassword = !showPassword">
-                  <i class="bi"
-                    [class.bi-eye]="!showPassword"
-                    [class.bi-eye-slash]="showPassword"></i>
+                <input [type]="showPassword ? 'text' : 'password'" id="sellerPassword" class="field-input"
+                  formControlName="password" placeholder="••••••••" [class.field-error]="isInvalid('password')" />
+                <button type="button" class="toggle-pw" (click)="showPassword = !showPassword">
+                  <i class="bi" [class.bi-eye]="!showPassword" [class.bi-eye-slash]="showPassword"></i>
                 </button>
               </div>
               @if (isInvalid('password')) {
-                <small class="error-msg">La contraseña es obligatoria</small>
+              <small class="error-msg">La contraseña es obligatoria</small>
+              }
+            </div>
+
+            <!-- Password rules -->
+            <div class="pw-rules">
+              @for (rule of passwordRules; track rule.label; let i = $index) {
+              <div class="pw-rule" [class.pw-rule-ok]="ruleResults[i]">
+                <i class="bi" [class.bi-check-circle-fill]="ruleResults[i]" [class.bi-x-circle]="!ruleResults[i]"></i>
+                <span>{{ rule.label }}</span>
+              </div>
               }
             </div>
 
             <!-- Error banner -->
             @if (formError) {
-              <div class="error-banner">
-                <i class="bi bi-exclamation-triangle-fill"></i>
-                {{ formError }}
-              </div>
+            <div class="error-banner">
+              <i class="bi bi-exclamation-triangle-fill"></i>
+              {{ formError }}
+            </div>
             }
 
             <button type="submit" class="submit-btn mt-1">
@@ -117,47 +120,35 @@
 
           <!-- Empty state -->
           @if (sellers.length === 0) {
-            <div class="empty-state">
-              <div class="empty-icon">
-                <i class="bi bi-people"></i>
-              </div>
-              <p class="empty-title">No hay vendedores registrados</p>
-              <p class="empty-sub">Crea uno usando el formulario</p>
+          <div class="empty-state">
+            <div class="empty-icon">
+              <i class="bi bi-people"></i>
             </div>
+            <p class="empty-title">No hay vendedores registrados</p>
+            <p class="empty-sub">Crea uno usando el formulario</p>
+          </div>
           } @else {
-            <div class="sellers-list">
-              @for (seller of sellers; track seller.id) {
-                <div class="seller-row animate-fade-up">
+          <div class="sellers-list">
+            @for (seller of sellers; track seller.id) {
+            <div class="seller-row animate-fade-up">
 
-                  <!-- Avatar -->
-                  <div class="seller-avatar">{{ getInitials(seller.name) }}</div>
+              <!-- Avatar -->
+              <div class="seller-avatar">{{ getInitials(seller.name) }}</div>
 
-                  <!-- Info -->
-                  <div class="seller-info flex-grow-1">
-                    <p class="seller-name">{{ seller.name }}</p>
-                    <p class="seller-user">@{{ seller.user }}</p>
-                    <div class="seller-pw-row">
-                      <span class="seller-pw">
-                        {{ showPasswords[seller.id] ? seller.password : '••••••••' }}
-                      </span>
-                      <button class="pw-toggle" type="button"
-                        (click)="togglePassword(seller.id)">
-                        <i class="bi"
-                          [class.bi-eye]="!showPasswords[seller.id]"
-                          [class.bi-eye-slash]="showPasswords[seller.id]"></i>
-                      </button>
-                    </div>
-                  </div>
+              <!-- Info -->
+              <div class="seller-info flex-grow-1">
+                <p class="seller-name">{{ seller.name }}</p>
+                <p class="seller-user">@{{ seller.user }}</p>
+              </div>
 
-                  <!-- Delete -->
-                  <button class="delete-btn" type="button"
-                    (click)="handleDelete(seller.id)">
-                    <i class="bi bi-trash3"></i>
-                  </button>
+              <!-- Delete -->
+              <button class="delete-btn" type="button" (click)="handleDelete(seller.id)">
+                <i class="bi bi-trash3"></i>
+              </button>
 
-                </div>
-              }
             </div>
+            }
+          </div>
           }
 
         </div>
