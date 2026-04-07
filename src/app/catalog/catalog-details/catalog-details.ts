@@ -94,7 +94,7 @@ export class CatalogDetails implements OnInit, OnDestroy {
           return {
             id: this.endowmentDetail.id,
             name: this.endowmentDetail.nombre,
-            gramaje: this.endowmentDetail.gramajes[index].gramos + ' gramos ',
+            gramaje: this.endowmentDetail.gramajes[index].gramos + ' gramos ' + 'x ' + this.endowmentDetail.gramajes[index].unidades + ' unidades',
             quantity: this.quantity[index] || 1,
             image: this.endowmentDetail.imagen,
             index,
