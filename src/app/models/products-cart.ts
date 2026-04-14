@@ -3,6 +3,7 @@ export interface ProductsCart {
     name: string;
     gramaje: string;
     quantity: number;
+    units: number;
     image?: string;
     index ?: number;
     price?: number;

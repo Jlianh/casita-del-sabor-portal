@@ -83,8 +83,8 @@ export class CatalogQuotation implements OnInit {
     );
 
     this.cartService.getItems().forEach((item, i) => {
-      this.staffPricingForm.addControl(`price_${i}`, new FormControl<number>(item.price ?? 0, [Validators.required, Validators.min(0)]));
-      this.staffPricingForm.addControl(`discount_${i}`, new FormControl<number>(0, [Validators.min(0), Validators.max(100)]));
+      this.staffPricingForm.addControl(`price_${i}`, new FormControl<number | null>(item.price ?? null, [Validators.required]));
+      this.staffPricingForm.addControl(`discount_${i}`, new FormControl<number | null>(null, [Validators.max(100)]));
     });
   }
 
@@ -122,8 +122,10 @@ export class CatalogQuotation implements OnInit {
 
   /** Returns the subtotal (price × qty + iva − discount) for a single item row. */
   getItemSubtotal(i: number): number {
+    
+
     const price = Number(this.staffPricingForm.get(`price_${i}`)?.value);
-    const qty = this.cartService.getItems()[i]?.quantity ?? 0;
+    const qty = this.cartService.getItems()[i]?.quantity * this.cartService.getItems()[i]?.units;
     const discPct = this.staffPricingForm.get(`discount_${i}`)?.value ?? 0;
 
     const base = price * qty;
@@ -135,7 +137,7 @@ export class CatalogQuotation implements OnInit {
   /** Returns the IVA amount for a single item row. */
   getItemIvaValue(i: number): number {
     const price = Number(this.staffPricingForm.get(`price_${i}`)?.value);
-    const qty = this.cartService.getItems()[i]?.quantity ?? 0;
+    const qty = this.cartService.getItems()[i]?.quantity * this.cartService.getItems()[i]?.units;
 
     const base = price * qty;
     const ivaAmt = base * 0.19;
@@ -145,7 +147,7 @@ export class CatalogQuotation implements OnInit {
   /** Returns the discount amount for a single item row. */
   getItemDiscountValue(i: number): number {
     const price = Number(this.staffPricingForm.get(`price_${i}`)?.value);
-    const qty = this.cartService.getItems()[i]?.quantity ?? 0;
+    const qty = this.cartService.getItems()[i]?.quantity * this.cartService.getItems()[i]?.units;
     const discPct = this.staffPricingForm.get(`discount_${i}`)?.value ?? 0;
 
     const base = price * qty;
@@ -171,7 +173,7 @@ export class CatalogQuotation implements OnInit {
 
     items.forEach((item, i) => {
       const price = Number(this.staffPricingForm.get(`price_${i}`)?.value ?? 0);
-      const qty = item.quantity;
+      const qty = item.quantity * item.units;
       const discPct = this.normalizePct(
         this.staffPricingForm.get(`discount_${i}`)?.value ?? 0
       );
@@ -377,7 +379,7 @@ export class CatalogQuotation implements OnInit {
           code: item.barcode,
           name: item.name,
           grammage: item.gramaje,
-          quantity: item.quantity,
+          quantity: item.quantity * item.units,
           unitaryPrice: Number(this.staffPricingForm.get(`price_${i}`)?.value ?? 0),
           iva: 19,
           discount: Number(this.staffPricingForm.get(`discount_${i}`)?.value ?? 0),
