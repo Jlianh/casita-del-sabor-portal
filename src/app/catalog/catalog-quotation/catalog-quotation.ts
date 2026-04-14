@@ -36,7 +36,7 @@ export class CatalogQuotation implements OnInit {
   // ── Global retentions (staff only) ──────────────────────────────────────
   additionalInfoForm = new FormGroup({
     numeroRemision: new FormControl<number>(0, [Validators.min(1), Validators.required]),
-    numeroReciboCaja: new FormControl<number>(0, [Validators.min(1), Validators.required]),
+    numeroReciboCaja: new FormControl<number>(0),
     formaPago: new FormControl<string>('', [Validators.required]),
     descuentoComercial: new FormControl<number>(0, [Validators.min(1)])
   });

@@ -280,11 +280,7 @@
                             <div class="form-field">
                                 <label class="field-label" for="numeroReciboCaja">Numero de recibo de caja *</label>
                                 <input type="number" id="numeroReciboCaja" class="field-input"
-                                    formControlName="numeroReciboCaja" min="1" placeholder="0"
-                                    [class.field-error]="additionalInfoisInvalid('numeroReciboCaja')" />
-                                @if (additionalInfoisInvalid('numeroReciboCaja')) {
-                                <small class="error-msg">El número de recibo de caja es obligatorio</small>
-                                }
+                                    formControlName="numeroReciboCaja" min="1" placeholder="0" />
                             </div>
                             <div class="form-field">
                                 <label class="field-label">Forma de pago *</label>
