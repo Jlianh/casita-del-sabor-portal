@@ -530,7 +530,7 @@
     "id": 28,
     "imagen": "mani-dulce.jpg",
     "nombre": "Maní Dulce",
-    "categoria": "Dulces",
+    "categoria": "Frutos secos",
     "descripcion": "Maní dulce snack.",
     "ingredientes": "Maní, azúcar, saborizante artificial.",
     "codigo_nsa": "En trámite",
@@ -709,7 +709,7 @@
     "imagen": "nuez-moscada.jpg",
     "nombre": "Nuez Moscada",
     "categoria": "Especias",
-    "usos": "Repostería, salsas bechamel, carnes y sopas.",
+    "descripcion": "Repostería, salsas bechamel, carnes y sopas.",
     "ingredientes": "Nuez moscada.",
     "codigo_nsa": "NSA-003476-2017",
     "gramajes": [
@@ -717,6 +717,40 @@
         "gramos": 15,
         "unidades": 25,
         "cod_barras": "7707350880124"
+      }
+    ],
+    "embalaje": "Corrugado de 25 unidades en las presentaciones de x 15 g."
+  },
+  {
+    "id":38,
+    "imagen": "curcuma-pura-pequena.jpg",
+    "nombre": "Curcuma",
+    "categoria": "Especias",
+    "descripcion": "Aporta un color amarillo vibrante a arroces, sopas, cremas y bebidas.",
+    "ingredientes": "Curcuma pura.",
+    "codigo_nsa": "En trámite",
+    "gramajes": [
+      {
+        "gramos": 20,
+        "unidades": 25,
+        "cod_barras": "7707350880473"
+      }
+    ],
+    "embalaje": "Corrugado de 25 unidades en las presentaciones de x 20 g."
+  },
+  {
+    "id":39,
+    "imagen": "jengibre-pequeno.png",
+    "nombre": "Jengibre",
+    "categoria": "Especias",
+    "descripcion": " Aporta un sabor picante y aromático en sopas, guisos, infusiones, salteados, ensaladas, e incluso en repostería. ",
+    "ingredientes": "Jengibre puro.",
+    "codigo_nsa": "En trámite",
+    "gramajes": [
+      {
+        "gramos": 15,
+        "unidades": 25,
+        "cod_barras": "7707350881480"
       }
     ],
     "embalaje": "Corrugado de 25 unidades en las presentaciones de x 15 g."

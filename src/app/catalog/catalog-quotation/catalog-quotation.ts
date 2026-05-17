@@ -71,6 +71,21 @@ export class CatalogQuotation implements OnInit {
       this.rebuildStaffPricing();
     }
     this.filteredDepts = this.allDepts;
+
+    // Auto-populate client info if authenticated as client
+    if (this.authService.isAuthenticated() && this.authService.isClient()) {
+      const user = this.authService.currentUser;
+      console.log(user);
+      if (user) {
+        this.clientQuotationForm.patchValue({
+          clientName: user.name || user.user || '',
+          clientEmail: user.email || '',
+        });
+        // Mark as readonly for authenticated clients
+        this.clientQuotationForm.get('clientName')?.disable();
+        this.clientQuotationForm.get('clientEmail')?.disable();
+      }
+    }
   }
 
   // ── Helpers ──────────────────────────────────────────────────────────────
@@ -388,8 +403,7 @@ export class CatalogQuotation implements OnInit {
 
       this.quotationService.SendBill(billRequest).subscribe({
         next: response => {
-          console.log('Bill sent successfully', response);
-          alert('Factura generada y enviada con éxito.');
+          alert('Remision enviada con el número: ' + response.remisionNumber);
           this.cartService.getItems().length = 0;
           this.clientQuotationForm.reset();
           this.rebuildStaffPricing();
@@ -399,15 +413,20 @@ export class CatalogQuotation implements OnInit {
 
     } else {
       // ── QUOTATION (cotización) path ──────────────────────────────────────
+      const user = this.authService.currentUser;
+      const clientName = user?.name || user?.user || client.clientName || '';
+      const clientEmail = user?.email || client.clientEmail || '';
+
       const quotationRequest = {
-        clientName: client.clientName!,
+        clientName: clientName,
         clientId: client.clientId!,
         clientCity: this.locationForm.get('clientCiudad')?.value?.toString(),
-        clientEmail: client.clientEmail!,
+        clientEmail: clientEmail,
         clientAddress: client.clientAddress!,
         clientPhone: client.clientPhone!,
         createdAt: new Date().toISOString().split('T')[0],
         role: 'customer',
+        userId: user?.id,
         quotationItems: cartItems.map(item => ({
           productId: item.id,
           name: item.name,

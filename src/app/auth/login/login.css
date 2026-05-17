@@ -412,3 +412,17 @@
 }
 
 .back-modal-btn:hover { color: #DB3438; }
+
+.login-link {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin: 0;
+
+  --anchor {
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+    --hover { text-decoration: underline; }
+  }
+}

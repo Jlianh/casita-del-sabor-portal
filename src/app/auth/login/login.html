@@ -63,7 +63,6 @@
 
         <!-- Remember me / Forgot -->
         <div class="d-flex align-items-center justify-content-between">
-    
           <button type="button" class="forgot-btn" (click)="showForgot = true">¿Olvidaste tu contraseña?</button>
         </div>
 
@@ -75,6 +74,11 @@
         Iniciar Sesión
       </button>
     </form>
+
+    <p class="login-link">
+        ¿No tienes cuenta?
+        <a routerLink="/auth/register" class="login-link__anchor">Registrarse</a>
+      </p>
 
     <!-- Footer -->
     <div class="login-footer">

@@ -27,7 +27,7 @@ export class AuthService {
             const parsed = JSON.parse(cached);
             const normalized: AppUser = {
                 ...parsed,
-                email: parsed.user || parsed.email,
+                email: parsed.email,
                 roles: parsed.roles ?? (parsed.role ? [parsed.role] : []),
             };
             this.currentUserSubject.next(normalized);
@@ -65,6 +65,11 @@ export class AuthService {
         return roles.includes('administrador');
     }
 
+    isClient(): boolean {
+        const roles = this.currentUser?.roles || [];
+        return roles.includes('cliente');
+    }
+
     login(email: string, password: string): Observable<any> {
         return this.loginService.login(email, password).pipe(
             tap((res: any) => {
@@ -73,7 +78,7 @@ export class AuthService {
                 const src = res.user ?? res;
                 const normalized: AppUser = {
                     ...src,
-                    email: src.user || src.email,
+                    email: src.email,
                     roles: src.roles ?? (src.role ? [src.role] : []),
                 };
 
@@ -99,7 +104,7 @@ export class AuthService {
                 if (src) {
                     const normalized: AppUser = {
                         ...src,
-                        email: src.user || src.email,
+                        email: src.email,
                         roles: src.roles ?? (src.role ? [src.role] : []),
                     };
                     this.currentUserSubject.next(normalized);
@@ -111,6 +116,12 @@ export class AuthService {
 
     createUser(data: any) {
         return this.http.post(`${this.apiUrl}/users`, data, {
+            withCredentials: true
+        });
+    }
+
+    createClient(data: any) {
+        return this.http.post(`${this.apiUrl}/register`, data, {
             withCredentials: true
         });
     }

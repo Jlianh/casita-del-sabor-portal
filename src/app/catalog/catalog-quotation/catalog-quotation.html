@@ -120,6 +120,7 @@
 
                     <form [formGroup]="clientQuotationForm" class="mt-4 d-flex flex-column gap-3">
 
+                        @if (!(authService.isAuthenticated() && authService.isClient())) {
                         <div class="form-field">
                             <label class="field-label" for="clientName">
                                 Nombre del Cliente <span class="text-danger">*</span>
@@ -130,6 +131,14 @@
                             <small class="error-msg">El nombre es obligatorio</small>
                             }
                         </div>
+                        } @else {
+                        <div class="form-field">
+                            <label class="field-label">Nombre del Cliente</label>
+                            <input type="text" id="clientName" class="field-input" formControlName="clientName"
+                                placeholder="Nombre completo" readonly style="background-color: #f0f0f0; cursor: not-allowed;" />
+                            <small style="color: #666; font-size: 0.85rem;">Información obtenida de tu perfil autenticado</small>
+                        </div>
+                        }
 
                         <div class="form-field">
                             <label class="field-label" for="clientId">NIT / CC <span
@@ -242,10 +251,16 @@
                             <label class="field-label" for="clientEmail">
                                 Correo Electrónico <span class="text-danger">*</span>
                             </label>
+                            @if (!(authService.isAuthenticated() && authService.isClient())) {
                             <input type="email" id="clientEmail" class="field-input" formControlName="clientEmail"
                                 placeholder="Correo electrónico" [class.field-error]="isInvalid('clientEmail')" />
                             @if (isInvalid('clientEmail')) {
                             <small class="error-msg">El correo es obligatorio y debe tener un formato válido</small>
+                            }
+                            } @else {
+                            <input type="email" id="clientEmail" class="field-input" formControlName="clientEmail"
+                                placeholder="Correo electrónico" readonly style="background-color: #f0f0f0; cursor: not-allowed;" />
+                            <small style="color: #666; font-size: 0.85rem;">Información obtenida de tu perfil autenticado</small>
                             }
                         </div>
 

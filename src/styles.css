@@ -44,3 +44,23 @@ html, body {
     background-color: #fcba2d !important;
     border-color: #fcba2d !important;
 }
+
+:root {
+  /* ── Brand colors ── */
+  --primary: #c20c0c;
+  --primary-rgb: 194, 65, 12;
+  --primary-foreground: #ffffff;
+  --primary-foreground-rgb: 255, 255, 255;
+
+  /* ── Surface colors ── */
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --border: #e2e8f0;
+
+  /* ── Text colors ── */
+  --muted-foreground: #64748b;
+
+  /* ── State colors ── */
+  --destructive: #ef4444;
+}

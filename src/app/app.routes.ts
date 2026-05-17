@@ -9,6 +9,7 @@ import { StaffGuard } from './services/staff.guard';
 import { AdminUsers } from './admin/admin';
 import { Institutional } from './catalog/institutional/institutional';
 import { RestorePassword } from './auth/restore-password/restore-password';
+import { RegisterComponent } from './auth/register/register';
 
 export const routes: Routes = [
     { path: 'details/:id', component: CatalogDetails},
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'institutional', component:Institutional},
     { path: 'auth/login', component:Login},
     { path: 'auth/restore/:id', component:RestorePassword},
+    { path: 'auth/register', component:RegisterComponent },
     { path: 'admin', component:AdminUsers, canActivate: [StaffGuard] },
     { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];

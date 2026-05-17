@@ -5,10 +5,11 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap'
 import { Navbar } from "./components/navbar/navbar";
 import { Footer } from "./components/footer/footer";
 import { AuthService } from './services/auth.service';
+import { Whatsapp } from './components/whatsapp/whatsapp';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, NgbCollapseModule, RouterModule, Navbar, Footer],
+  imports: [CommonModule, NgbCollapseModule, RouterModule, Navbar, Footer, Whatsapp],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
